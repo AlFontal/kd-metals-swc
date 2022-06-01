@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "kd-metals-swc"
+version = "0.1.0"
+description = "Repository with the code for the analysis of the manuscript Fine metal-rich aeorosols from intensive farming and urban pollution promote Kawasaki disease outbreaks."
+authors = ["Alejandro Fontal <alejandro.fontal.92@gmail.com>"]
+license = "BSD-3"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
