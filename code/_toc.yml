@@ -1,5 +1,5 @@
 format: jb-book
-root: summary
+root: README
 parts:
 - caption: Notebooks
   chapters:
