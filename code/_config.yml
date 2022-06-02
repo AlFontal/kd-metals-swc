@@ -5,10 +5,10 @@
 
 #######################################################################################
 # Book settings
-title                       : KD and Tokyo's air sources  # The title of the book. Will be placed in the left navbar.
-author                      : Alejandro Fontal  # The author of the book
+title                       : KD and metal rich aerosols  # The title of the book. Will be placed in the left navbar.
+author                      : Alejandro Fontal, Albert Navarro, Xavier Rodó  # The author of the book
 copyright                   : "2022"  # Copyright year to be placed in the footer
-logo                        : images/logo.png # A path to the book logo
+logo                        : assets/logo.png # A path to the book logo
 
 execute:
   execute_notebooks: "off"
@@ -19,7 +19,7 @@ repository:
 html:
   use_repository_button: true
   use_issues_button: true
-  favicon: images/favicon.ico
+  favicon: assets/favicon.ico
   baseurl: 'https://alfontal.github.io/kd-metals-swc'
   comments:
     utterances: 

@@ -1,10 +1,11 @@
-format: jb-article
-root: README
-sections:
-- file: hysplit_trajectories
-  title: Full code and analysis
-- file: metals
-  title: Poster Image
-- file: weekly-cycle-figures-ang
-  title: Sub-weekly Cycle Figures
-
+format: jb-book
+root: summary
+parts:
+- caption: Notebooks
+  chapters:
+  - file: hysplit_trajectories
+    title: HYSPLIT backtrajectories
+  - file: metals
+    title: Chemistry and KD synchrony
+  - file: weekly-cycle-figures-ang
+    title: Sub-weekly Cycle Figures
