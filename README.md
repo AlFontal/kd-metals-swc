@@ -1,5 +1,8 @@
 # Fine metal-rich aerosols from intensive farming and urban pollution promote Kawasaki disease outbreaks
 
+![license](https://img.shields.io/badge/license-BSD--3--Clause-green)
+![python](https://img.shields.io/badge/python-v3.8-orange)
+![R](https://img.shields.io/badge/R-v4.1.2-blue)
 
 This repository contains the materials and code necessary to reproduce the analysis on the manuscript 
 _Fine metal-rich aerosols from intensive farming and urban pollution promote Kawasaki disease outbreaks_.
