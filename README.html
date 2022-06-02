@@ -261,6 +261,28 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#code">
+   Code
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hysplit-trajectories">
+     1. HYSPLIT trajectories
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#metal-rich-aerosols-and-kd-in-kumamoto">
+     2. Metal-rich aerosols and KD in Kumamoto
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#kawasaki-disease-s-sub-weekly-cycle-figures">
+     3. Kawasaki Disease’s sub-weekly cycle figures.
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 
             </nav>
@@ -310,6 +332,28 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#code">
+   Code
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hysplit-trajectories">
+     1. HYSPLIT trajectories
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#metal-rich-aerosols-and-kd-in-kumamoto">
+     2. Metal-rich aerosols and KD in Kumamoto
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#kawasaki-disease-s-sub-weekly-cycle-figures">
+     3. Kawasaki Disease’s sub-weekly cycle figures.
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 
                         </nav>
@@ -327,7 +371,6 @@ const thebe_selector_output = ".output, .cell_output"
 <img alt="R" src="https://img.shields.io/badge/R-v4.1.2-blue"/></p>
 <p>This repository contains the materials and code necessary to reproduce the analysis on the manuscript
 <em>Fine metal-rich aerosols from intensive farming and urban pollution promote Kawasaki disease outbreaks</em>.</p>
-<p><strong>To check the code notebooks, please follow <a class="reference external" href="https://alfontal.github.io/kd-metals-swc">this link</a></strong>.</p>
 <p>Since the manuscript is in the pre-publication step, we are keeping the source code on a private repository
 in GitHub. To aid in the review process and provide maximum transparency and ensure the reproducibility of the
 experiments, we are sharing the repository (which can be cloned and then executed) with
@@ -379,6 +422,30 @@ the step-by-step code used to generate the analyses and figures shown in the man
 <p>You will also need to download the associated gridded meteorology data in order to be able tu run HYSPLIT. In this case, the data used is GDAS 1x1 data, from 2011 to 2016. This is not included in the repository as it contains several GB of information. This data is available for download via the NOAA’s archives FTP, accessible through this link: <a class="reference external" href="https://www.ready.noaa.gov/archives.php">https://www.ready.noaa.gov/archives.php</a>.</p>
 </div>
 </div>
+</div>
+<div class="section" id="code">
+<h2>Code<a class="headerlink" href="#code" title="Permalink to this headline">¶</a></h2>
+<p>We have shared three different notebooks to disclose how different parts of the analyses in the manuscript are made:</p>
+<div class="section" id="hysplit-trajectories">
+<h3>1. HYSPLIT trajectories<a class="headerlink" href="#hysplit-trajectories" title="Permalink to this headline">¶</a></h3>
+<p>This notebook can be accessed <a class="reference external" href="https://alfontal.github.io/kd-metals-swc/hysplit_trajectories.html"><strong>here</strong></a>.</p>
+<p>Here you can check how the backtrajectories shown in <strong>Figure 3</strong> and <strong>Supplementary Figure 2</strong> traced with HYSPLIT are generated.</p>
+<p><img alt="Figure 3" src="_images/readme_img.png"/></p>
+<figcaption align="center"><b>Figure 3</b> </figcaption>
+</div>
+<div class="section" id="metal-rich-aerosols-and-kd-in-kumamoto">
+<h3>2. Metal-rich aerosols and KD in Kumamoto<a class="headerlink" href="#metal-rich-aerosols-and-kd-in-kumamoto" title="Permalink to this headline">¶</a></h3>
+<p>This notebook can be accessed <a class="reference external" href="https://alfontal.github.io/kd-metals-swc/metals.html"><strong>here</strong></a>.</p>
+<p>Here, you can check the analysis that relates the presence of metal-rich aeorosols and KD in Kumamoto.</p>
+<p><img alt="Figure 2" src="https://lh4.googleusercontent.com/rrK3X9p74-_XWkcNn5ezxhPzX4iEq-mwUg9ffnOkwXFtILoFhfbiy8JgshXTkLq4Vka-wlUtkjcJX6OUEzlHZZxcihSX67wpgUqTat7bOBodjEtLW80DNeLS0l5M1jYHECetxjlC88LyyuxELJmXWA"/></p>
+<figcaption align="center"><b>Figure 2</b> </figcaption>
+</div>
+<div class="section" id="kawasaki-disease-s-sub-weekly-cycle-figures">
+<h3>3. Kawasaki Disease’s sub-weekly cycle figures.<a class="headerlink" href="#kawasaki-disease-s-sub-weekly-cycle-figures" title="Permalink to this headline">¶</a></h3>
+<p>This notebook can be accessed <a class="reference external" href="https://alfontal.github.io/kd-metals-swc/weekly-cycle-figures-ang.html"><strong>here</strong></a>.</p>
+<p>Analysis and figures related to the LIDAR profiles and subweekly cycle of Kawasaki Disease.</p>
+<p><img alt="Figure 6" src="https://lh6.googleusercontent.com/4I6hHKc77OJ34k-HXiCk8ocebNBisUABex3wFUSVo6mwFmqd3StxR_X4A-B1v1v1n7Rp-6M4gbVwF8ypIhqgp66OjF6r4Yon6ea1nfLHej9ujAkMX3bRn-YeBdsUKxECNVfQkDsquL5Hr_G6uQ"/></p>
+<figcaption align="center"><b>Figure 6</b> </figcaption></div>
 </div>
 <div class="toctree-wrapper compound">
 </div>

@@ -10,8 +10,6 @@
 This repository contains the materials and code necessary to reproduce the analysis on the manuscript 
 _Fine metal-rich aerosols from intensive farming and urban pollution promote Kawasaki disease outbreaks_.
 
-**To check the code notebooks, please follow [this link](https://alfontal.github.io/kd-metals-swc)**.
-
 
 Since the manuscript is in the pre-publication step, we are keeping the source code on a private repository
 in GitHub. To aid in the review process and provide maximum transparency and ensure the reproducibility of the 
@@ -71,3 +69,34 @@ To estimate the backtrajectories of air sources, in this study we use [HYSPLIT 5
 
 You will also need to download the associated gridded meteorology data in order to be able tu run HYSPLIT. In this case, the data used is GDAS 1x1 data, from 2011 to 2016. This is not included in the repository as it contains several GB of information. This data is available for download via the NOAA's archives FTP, accessible through this link: https://www.ready.noaa.gov/archives.php.
 
+## Code
+
+We have shared three different notebooks to disclose how different parts of the analyses in the manuscript are made:
+
+### 1. HYSPLIT trajectories
+
+This notebook can be accessed [**here**](https://alfontal.github.io/kd-metals-swc/hysplit_trajectories.html).
+
+Here you can check how the backtrajectories shown in **Figure 3** and **Supplementary Figure 2** traced with HYSPLIT are generated.
+
+![Figure 3](assets/readme_img.png)
+<figcaption align = "center"><b>Figure 3</b> </figcaption>
+
+### 2. Metal-rich aerosols and KD in Kumamoto
+
+This notebook can be accessed [**here**](https://alfontal.github.io/kd-metals-swc/metals.html).
+
+Here, you can check the analysis that relates the presence of metal-rich aeorosols and KD in Kumamoto.
+
+![Figure 2](https://lh4.googleusercontent.com/rrK3X9p74-_XWkcNn5ezxhPzX4iEq-mwUg9ffnOkwXFtILoFhfbiy8JgshXTkLq4Vka-wlUtkjcJX6OUEzlHZZxcihSX67wpgUqTat7bOBodjEtLW80DNeLS0l5M1jYHECetxjlC88LyyuxELJmXWA)
+<figcaption align = "center"><b>Figure 2</b> </figcaption>
+
+
+### 3. Kawasaki Disease's sub-weekly cycle figures.
+
+This notebook can be accessed [**here**](https://alfontal.github.io/kd-metals-swc/weekly-cycle-figures-ang.html).
+
+Analysis and figures related to the LIDAR profiles and subweekly cycle of Kawasaki Disease.
+
+![Figure 6](https://lh6.googleusercontent.com/4I6hHKc77OJ34k-HXiCk8ocebNBisUABex3wFUSVo6mwFmqd3StxR_X4A-B1v1v1n7Rp-6M4gbVwF8ypIhqgp66OjF6r4Yon6ea1nfLHej9ujAkMX3bRn-YeBdsUKxECNVfQkDsquL5Hr_G6uQ)
+<figcaption align = "center"><b>Figure 6</b> </figcaption>
