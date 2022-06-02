@@ -1,0 +1,10 @@
+format: jb-article
+root: README
+sections:
+- file: hysplit_trajectories
+  title: Full code and analysis
+- file: metals
+  title: Poster Image
+- file: weekly-cycle-figures-ang
+  title: Sub-weekly Cycle Figures
+
