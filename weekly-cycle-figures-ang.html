@@ -415,15 +415,75 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="c1">#Load or/and install needed packages</span>
 <span class="nf">insAndLoad</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">"progress"</span><span class="p">,</span><span class="s">"Hmisc"</span><span class="p">,</span><span class="s">"plot3D"</span><span class="p">,</span><span class="s">"purrr"</span><span class="p">,</span>
              <span class="s">"ggplot2"</span><span class="p">,</span> <span class="s">"tidyr"</span><span class="p">,</span> <span class="s">"dplyr"</span><span class="p">,</span> <span class="s">"readr"</span><span class="p">,</span> <span class="s">"tibble"</span><span class="p">,</span> 
-             <span class="s">"zoo"</span><span class="p">,</span> <span class="s">"ggsci"</span><span class="p">,</span> <span class="s">"stringr"</span><span class="p">,</span>
+             <span class="s">"zoo"</span><span class="p">,</span> <span class="s">"ggsci"</span><span class="p">,</span> <span class="s">"stringr"</span><span class="p">,</span><span class="s">"grid"</span><span class="p">,</span> <span class="s">"gridExtra"</span><span class="p">,</span>
              <span class="s">"reprex"</span><span class="p">,</span> <span class="s">"lubridate"</span><span class="p">,</span><span class="s">"caTools"</span><span class="p">,</span><span class="s">"TeachingDemos"</span><span class="p">,</span>
              <span class="s">"reshape2"</span><span class="p">,</span><span class="s">"caret"</span><span class="p">,</span><span class="s">"ggpubr"</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Attaching package: ‘gridExtra’
+
+
+The following object is masked from ‘package:dplyr’:
+
+    combine
 </pre></div>
 </div>
 </div>
 </div>
 <div class="tex2jax_ignore mathjax_ignore section" id="figure-4e">
 <h1>Figure 4E<a class="headerlink" href="#figure-4e" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">options</span><span class="p">(</span><span class="n">repr.plot.width</span> <span class="o">=</span> <span class="m">6</span><span class="p">,</span> <span class="n">repr.plot.height</span> <span class="o">=</span> <span class="m">3</span><span class="p">,</span> <span class="n">repr.plot.res</span><span class="o">=</span><span class="m">300</span><span class="p">)</span>
+<span class="n">absc532_KD_Surf_6km</span> <span class="o">&lt;-</span> <span class="nf">readRDS</span><span class="p">(</span><span class="s">"data/KD_absc532_mean_S-6km_daily.rds"</span><span class="p">)</span>
+
+<span class="n">data_gg</span> <span class="o">&lt;-</span> <span class="n">absc532_KD_Surf_6km</span> <span class="o">%&gt;%</span>
+    <span class="c1"># Add a column with all the years from the time series daily index</span>
+    <span class="nf">mutate</span><span class="p">(</span><span class="n">Year</span> <span class="o">=</span> <span class="nf">year</span><span class="p">(</span><span class="n">Dates</span><span class="p">),</span>
+           <span class="n">Month</span> <span class="o">=</span> <span class="nf">month</span><span class="p">(</span><span class="n">Dates</span><span class="p">))</span> <span class="o">%&gt;%</span>
+    <span class="c1"># Group by the month</span>
+    <span class="c1">#group_by(Month = month(Dates), Year) %&gt;%</span>
+    <span class="nf">group_by</span><span class="p">(</span><span class="n">WeekDay</span> <span class="o">=</span> <span class="nf">wday</span><span class="p">(</span><span class="n">Dates</span><span class="p">,</span> <span class="n">week_start</span><span class="o">=</span><span class="m">1</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">))</span> <span class="o">%&gt;%</span>
+    <span class="c1"># Aggregate data monthly: mean, max or min?</span>
+    <span class="nf">summarize_at</span><span class="p">(</span><span class="nf">vars</span><span class="p">(</span><span class="s">"absc532_TKO"</span><span class="p">,</span><span class="s">"KD_TKO"</span><span class="p">),</span> <span class="nf">list</span><span class="p">(</span><span class="o">~</span><span class="nf">mean</span><span class="p">(</span><span class="n">.</span><span class="p">,</span><span class="n">na.rm</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">),</span>
+                                                   <span class="o">~</span><span class="nf">max</span><span class="p">(</span><span class="n">.</span><span class="p">,</span><span class="n">na.rm</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">),</span>
+                                                   <span class="o">~</span><span class="nf">min</span><span class="p">(</span><span class="n">.</span><span class="p">,</span><span class="n">na.rm</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)))</span>
+
+
+<span class="n">max_ld</span> <span class="o">&lt;-</span> <span class="nf">max</span><span class="p">(</span><span class="n">data_gg</span><span class="o">$</span><span class="n">KD_TKO_max</span><span class="p">)</span><span class="m">+1</span>
+<span class="n">min_ld</span> <span class="o">&lt;-</span> <span class="nf">min</span><span class="p">(</span><span class="n">data_gg</span><span class="o">$</span><span class="n">KD_TKO_max</span><span class="p">)</span>
+<span class="n">max_kd</span> <span class="o">&lt;-</span> <span class="nf">max</span><span class="p">(</span><span class="n">data_gg</span><span class="o">$</span><span class="n">absc532_TKO_max</span><span class="p">)</span><span class="o">*</span><span class="m">1E+6</span> <span class="o">-</span> <span class="m">1</span>
+<span class="n">min_kd</span> <span class="o">&lt;-</span> <span class="nf">min</span><span class="p">(</span><span class="n">data_gg</span><span class="o">$</span><span class="n">absc532_TKO_max</span><span class="p">)</span><span class="o">*</span><span class="m">1E+6</span> <span class="o">-</span> <span class="m">1</span>
+
+<span class="c1"># plot coefficient</span>
+<span class="n">ggCoeff_weekly</span> <span class="o">&lt;-</span> <span class="p">(</span><span class="n">max_kd</span><span class="o">-</span><span class="n">min_kd</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">max_ld</span><span class="o">-</span><span class="n">min_ld</span><span class="p">)</span>
+<span class="n">intercept</span> <span class="o">&lt;-</span> <span class="n">max_kd</span> <span class="o">-</span> <span class="p">(</span><span class="n">max_ld</span><span class="o">*</span><span class="n">ggCoeff_weekly</span><span class="p">)</span>
+
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">data_gg</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">WeekDay</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">geom_line</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">y</span><span class="o">=</span> <span class="n">KD_TKO_max</span><span class="p">),</span> <span class="n">group</span><span class="o">=</span><span class="m">1</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">geom_line</span><span class="p">(</span> <span class="nf">aes</span><span class="p">(</span><span class="n">y</span><span class="o">=</span> <span class="p">(</span><span class="n">absc532_TKO_max</span><span class="o">*</span><span class="m">1E+6</span> <span class="o">-</span> <span class="n">intercept</span><span class="p">)</span><span class="o">/</span><span class="n">ggCoeff_weekly</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s">"dodgerblue"</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="m">1</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">scale_y_continuous</span><span class="p">(</span><span class="n">sec.axis</span> <span class="o">=</span> <span class="nf">sec_axis</span><span class="p">(</span><span class="n">trans</span><span class="o">=~</span><span class="n">.</span><span class="o">*</span><span class="n">ggCoeff_weekly</span> <span class="o">+</span> <span class="n">intercept</span><span class="p">,</span> <span class="c1">#trans_sec , #* ggCoeff_weekly,</span>
+                                           <span class="n">name</span><span class="o">=</span><span class="s">"absc532 [/Mm/sr]"</span><span class="p">))</span> <span class="o">+</span>
+    <span class="nf">theme_bw</span><span class="p">()</span> <span class="o">+</span> 
+    <span class="nf">labs</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s">'Week day'</span><span class="p">,</span>
+         <span class="n">y</span><span class="o">=</span><span class="s">'KD cases'</span><span class="p">,</span>
+         <span class="n">title</span><span class="o">=</span><span class="s">''</span><span class="p">,</span>
+         <span class="n">subtitle</span><span class="o">=</span><span class="nf">paste</span><span class="p">(</span><span class="s">''</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s">'\n'</span><span class="p">),</span>
+         <span class="n">color</span><span class="o">=</span><span class="s">'Variable'</span><span class="p">)</span> <span class="o">+</span> 
+    <span class="nf">theme</span><span class="p">(</span><span class="n">plot.subtitle</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">color</span> <span class="o">=</span> <span class="s">"#605e5e"</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="m">9</span><span class="p">),</span>
+          <span class="n">plot.title</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">12</span><span class="p">),</span>
+          <span class="n">axis.title.y.right</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">color</span> <span class="o">=</span> <span class="s">"dodgerblue"</span><span class="p">),</span>
+          <span class="n">legend.position</span><span class="o">=</span><span class="s">"bottom"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/weekly-cycle-figures-ang_2_0.png" src="_images/weekly-cycle-figures-ang_2_0.png"/>
+</div>
+</div>
 </div>
 <div class="tex2jax_ignore mathjax_ignore section" id="figure-5">
 <h1>Figure 5<a class="headerlink" href="#figure-5" title="Permalink to this headline">¶</a></h1>
@@ -1071,6 +1131,177 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="supplementary-figure-7b">
 <h2>Supplementary Figure 7B<a class="headerlink" href="#supplementary-figure-7b" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">LidarStations_35d</span> <span class="o">&lt;-</span> <span class="nf">read_rds</span><span class="p">(</span><span class="s">"data/LidarSatations_35d.RDS"</span><span class="p">)</span>
+
+<span class="c1"># Select Lidar station variables and dates with 3.5d cycle</span>
+<span class="c1"># Empty list to fill</span>
+<span class="n">LidarVars_35c</span> <span class="o">&lt;-</span> <span class="nf">list</span><span class="p">()</span>
+<span class="n">LidarVars_RNG</span> <span class="o">&lt;-</span> <span class="nf">list</span><span class="p">()</span>
+<span class="n">BAE_list</span> <span class="o">&lt;-</span> <span class="nf">list</span><span class="p">()</span>
+<span class="n">absc532_listS</span> <span class="o">&lt;-</span> <span class="nf">list</span><span class="p">()</span>
+<span class="n">rngReps</span> <span class="o">&lt;-</span> <span class="m">10</span>
+<span class="c1"># When does the cycle 3.5days reach the surface in a particle variable such as absc532?</span>
+
+<span class="c1"># Function to compute the bootstrap interval:</span>
+<span class="n">bsci</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">B</span><span class="p">){</span>
+  <span class="n">bstrap</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">()</span>
+  <span class="nf">for </span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="n">B</span><span class="p">){</span>
+    <span class="n">bstrap</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="n">bstrap</span><span class="p">,</span><span class="nf">mean</span><span class="p">(</span><span class="nf">sample</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="nf">length</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="n">replace</span><span class="o">=</span><span class="bp">T</span><span class="p">),</span> <span class="n">na.rm</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">))</span>
+  <span class="p">}</span>
+  <span class="nf">return</span><span class="p">(</span><span class="n">bstrap</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nf">for </span><span class="p">(</span><span class="n">ldStat</span> <span class="n">in</span> <span class="n">Jap_lidar</span><span class="p">)</span> <span class="p">{</span>
+  
+  <span class="c1"># Select only dates with 3.5d cycle: extract hours lagged 1 </span>
+  <span class="c1"># day below the diagonal with correlations above 0.5 in a TW (s=84h)</span>
+  <span class="n">Corr_absc532_d</span> <span class="o">&lt;-</span> <span class="nf">tibble</span><span class="p">(</span><span class="n">Corr</span> <span class="o">=</span>  <span class="n">Corr_tw84_c</span><span class="p">[[</span><span class="n">ldStat</span><span class="p">]],</span>
+                           <span class="n">DatesH</span> <span class="o">=</span> <span class="nf">seq</span><span class="p">(</span><span class="n">from</span> <span class="o">=</span> <span class="nf">as.POSIXct</span><span class="p">(</span><span class="s">"2010-01-01 00:00:00"</span><span class="p">,</span><span class="n">tz</span> <span class="o">=</span> <span class="s">"UTC"</span><span class="p">),</span>
+                                       <span class="n">to</span> <span class="o">=</span> <span class="nf">as.POSIXct</span><span class="p">(</span><span class="s">"2016-12-31 23:00:00"</span><span class="p">,</span><span class="n">tz</span> <span class="o">=</span> <span class="s">"UTC"</span><span class="p">),</span>
+                                       <span class="n">by</span><span class="o">=</span><span class="s">"hour"</span><span class="p">)</span> <span class="p">)</span> <span class="o">%&gt;%</span>
+                    <span class="c1"># Select correlations over 0.5</span>
+                    <span class="nf">filter</span><span class="p">(</span><span class="n">Corr</span> <span class="o">&gt;</span> <span class="m">0.5</span> <span class="p">)</span>
+                    <span class="c1">#mutate(DatesH = ymd_h( format(as.POSIXct(Dates),format="%Y-%m-%d  %H")  )  ) %&gt;%</span>
+                   
+  
+  <span class="n">LidarVars_Stat</span> <span class="o">&lt;-</span> <span class="nf">lapply</span><span class="p">(</span><span class="n">LidarStations_35d</span><span class="p">[[</span><span class="n">ldStat</span><span class="p">]],</span> <span class="nf">function</span><span class="p">(</span><span class="n">ldVar</span><span class="p">){</span>
+                      <span class="n">ldVar</span><span class="p">[</span><span class="n">ldVar</span><span class="o">$</span><span class="n">DatesH</span> <span class="o">%in%</span> <span class="n">Corr_absc532_d</span><span class="o">$</span><span class="n">DatesH</span><span class="p">,]</span>  
+                     <span class="p">})</span>
+  <span class="n">LidarVars_35c</span><span class="p">[[</span><span class="n">ldStat</span><span class="p">]]</span> <span class="o">&lt;-</span> <span class="n">LidarVars_Stat</span>
+  <span class="nf">remove</span><span class="p">(</span><span class="n">LidarVars_Stat</span><span class="p">)</span>
+  
+  <span class="n">LidarVars_MultMtx</span> <span class="o">&lt;-</span> <span class="nf">list</span><span class="p">()</span>
+  
+  <span class="nf">for</span><span class="p">(</span><span class="n">ri</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="n">rngReps</span><span class="p">){</span>
+    <span class="c1"># Random Dates for comparison</span>
+    <span class="n">RandomDates</span> <span class="o">&lt;-</span> <span class="nf">seq</span><span class="p">(</span><span class="n">from</span> <span class="o">=</span> <span class="nf">as.POSIXct</span><span class="p">(</span><span class="s">"2010-01-01 00:00:00"</span><span class="p">,</span><span class="n">tz</span> <span class="o">=</span> <span class="s">"UTC"</span><span class="p">),</span>
+                       <span class="n">to</span> <span class="o">=</span> <span class="nf">as.POSIXct</span><span class="p">(</span><span class="s">"2016-12-31 23:00:00"</span><span class="p">,</span><span class="n">tz</span> <span class="o">=</span> <span class="s">"UTC"</span><span class="p">),</span>
+                       <span class="n">by</span><span class="o">=</span><span class="s">"hour"</span><span class="p">)</span> <span class="o">%&gt;%</span>
+                   <span class="nf">sample</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">.</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="nf">length</span><span class="p">(</span><span class="n">Corr_absc532_d</span><span class="o">$</span><span class="n">DatesH</span><span class="p">),</span> <span class="n">replace</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
+
+    <span class="n">LidarVars_StatRNG</span> <span class="o">&lt;-</span> <span class="nf">lapply</span><span class="p">(</span><span class="n">LidarStations_35d</span><span class="p">[[</span><span class="n">ldStat</span><span class="p">]],</span> <span class="nf">function</span><span class="p">(</span><span class="n">ldVar</span><span class="p">){</span>
+                            <span class="n">ldVar</span><span class="p">[</span><span class="n">ldVar</span><span class="o">$</span><span class="n">DatesH</span> <span class="o">%in%</span> <span class="n">RandomDates</span><span class="p">,]</span> <span class="o">%&gt;%</span>
+                            <span class="nf">select</span><span class="p">(</span><span class="o">-</span><span class="nf">c</span><span class="p">(</span><span class="s">"Dates"</span><span class="p">,</span><span class="s">"DatesH"</span><span class="p">,</span><span class="s">"DatesD"</span><span class="p">))</span> <span class="o">%&gt;%</span>
+                            <span class="nf">as.matrix</span><span class="p">()</span>
+                          <span class="p">})</span>
+    <span class="n">LidarVars_MultMtx</span><span class="p">[[</span><span class="n">ri</span><span class="p">]]</span> <span class="o">&lt;-</span> <span class="n">LidarVars_StatRNG</span>
+  <span class="p">}</span>
+  
+  <span class="c1"># Extract BAE matrices</span>
+  <span class="n">LidarVars_BAE</span> <span class="o">&lt;-</span> <span class="nf">sapply</span><span class="p">(</span><span class="n">LidarVars_MultMtx</span><span class="p">,</span> <span class="s">"["</span><span class="p">,</span> <span class="s">"absc532"</span><span class="p">)</span>
+  <span class="c1"># Compute the mean matrix for all random dates</span>
+  <span class="n">LidarVars_mean</span> <span class="o">&lt;-</span> <span class="nf">rowMeans</span><span class="p">(</span><span class="nf">simplify2array</span><span class="p">(</span><span class="n">LidarVars_BAE</span><span class="p">),</span> <span class="n">dims</span><span class="o">=</span><span class="m">2</span><span class="p">,</span> <span class="n">na.rm</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+  <span class="c1"># Store in a list per station</span>
+  <span class="n">LidarVars_RNG</span><span class="p">[[</span><span class="n">ldStat</span><span class="p">]]</span> <span class="o">&lt;-</span> <span class="n">LidarVars_mean</span>
+  <span class="nf">remove</span><span class="p">(</span><span class="n">LidarVars_mean</span><span class="p">)</span>
+  <span class="nf">remove</span><span class="p">(</span><span class="n">LidarVars_MultMtx</span><span class="p">)</span>
+  
+  <span class="c1"># BAE(532/1064) height distribution list per station</span>
+  <span class="n">BAE_list</span><span class="p">[[</span><span class="n">ldStat</span><span class="p">]]</span> <span class="o">&lt;-</span> <span class="nf">tibble</span><span class="p">(</span>
+    <span class="n">subWeekly_Mean</span> <span class="o">=</span> <span class="n">LidarVars_35c</span><span class="p">[[</span><span class="n">ldStat</span><span class="p">]]</span><span class="o">$</span><span class="n">absc532</span> <span class="o">%&gt;%</span> 
+                       <span class="nf">select</span><span class="p">(</span><span class="o">-</span><span class="nf">c</span><span class="p">(</span><span class="n">Dates</span><span class="p">,</span> <span class="n">DatesH</span><span class="p">,</span> <span class="n">DatesD</span><span class="p">))</span> <span class="o">%&gt;%</span>
+                       <span class="nf">as.matrix</span><span class="p">()</span> <span class="o">%&gt;%</span>
+                       <span class="nf">colMeans</span><span class="p">(</span><span class="n">na.rm</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">),</span>
+   <span class="n">subWeekly_Upper</span> <span class="o">=</span> <span class="n">LidarVars_35c</span><span class="p">[[</span><span class="n">ldStat</span><span class="p">]]</span><span class="o">$</span><span class="n">absc532</span> <span class="o">%&gt;%</span> 
+                      <span class="nf">select</span><span class="p">(</span><span class="o">-</span><span class="nf">c</span><span class="p">(</span><span class="n">Dates</span><span class="p">,</span> <span class="n">DatesH</span><span class="p">,</span> <span class="n">DatesD</span><span class="p">))</span> <span class="o">%&gt;%</span>
+                      <span class="nf">as.matrix</span><span class="p">()</span> <span class="o">%&gt;%</span>
+                      <span class="nf">apply</span><span class="p">(</span><span class="n">.</span><span class="p">,</span> <span class="n">MARGIN</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">FUN</span><span class="o">=</span><span class="nf">function</span><span class="p">(</span><span class="n">uh</span><span class="p">){</span>
+                         <span class="n">output</span> <span class="o">&lt;-</span> <span class="nf">bsci</span><span class="p">(</span><span class="n">uh</span><span class="p">,</span> <span class="m">100</span><span class="p">)</span>
+                         <span class="n">upperLim</span> <span class="o">&lt;-</span> <span class="nf">quantile</span><span class="p">(</span><span class="n">output</span><span class="p">,</span><span class="n">.</span><span class="m">95</span><span class="p">,</span> <span class="n">na.rm</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+                         <span class="nf">return</span><span class="p">(</span><span class="n">upperLim</span><span class="p">)</span>
+                      <span class="p">}),</span>
+                    <span class="c1">#colMeans(na.rm=TRUE),</span>
+   <span class="n">subWeekly_Lower</span> <span class="o">=</span> <span class="n">LidarVars_35c</span><span class="p">[[</span><span class="n">ldStat</span><span class="p">]]</span><span class="o">$</span><span class="n">absc532</span> <span class="o">%&gt;%</span> 
+                      <span class="nf">select</span><span class="p">(</span><span class="o">-</span><span class="nf">c</span><span class="p">(</span><span class="n">Dates</span><span class="p">,</span> <span class="n">DatesH</span><span class="p">,</span> <span class="n">DatesD</span><span class="p">))</span> <span class="o">%&gt;%</span>
+                      <span class="nf">as.matrix</span><span class="p">()</span>  <span class="o">%&gt;%</span>
+                      <span class="nf">apply</span><span class="p">(</span><span class="n">.</span><span class="p">,</span> <span class="n">MARGIN</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">FUN</span><span class="o">=</span><span class="nf">function</span><span class="p">(</span><span class="n">ul</span><span class="p">){</span>
+                        <span class="n">output</span> <span class="o">&lt;-</span> <span class="nf">bsci</span><span class="p">(</span><span class="n">ul</span><span class="p">,</span> <span class="m">100</span><span class="p">)</span>
+                        <span class="n">lowerLim</span> <span class="o">&lt;-</span> <span class="nf">quantile</span><span class="p">(</span><span class="n">output</span><span class="p">,</span><span class="n">.</span><span class="m">05</span><span class="p">,</span> <span class="n">na.rm</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+                        <span class="nf">return</span><span class="p">(</span><span class="n">lowerLim</span><span class="p">)</span>
+                      <span class="p">}),</span>
+   <span class="n">RNG_Mean</span>  <span class="o">=</span>  <span class="nf">colMeans</span><span class="p">(</span><span class="n">LidarVars_RNG</span><span class="p">[[</span><span class="n">ldStat</span><span class="p">]],</span> <span class="n">na.rm</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">),</span>
+   <span class="n">RNG_Upper</span>  <span class="o">=</span>  <span class="nf">apply</span><span class="p">(</span><span class="n">LidarVars_RNG</span><span class="p">[[</span><span class="n">ldStat</span><span class="p">]],</span> <span class="n">MARGIN</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">FUN</span><span class="o">=</span><span class="nf">function</span><span class="p">(</span><span class="n">uh</span><span class="p">){</span>
+                     <span class="n">output</span> <span class="o">&lt;-</span> <span class="nf">bsci</span><span class="p">(</span><span class="n">uh</span><span class="p">,</span> <span class="m">100</span><span class="p">)</span>
+                     <span class="n">upperLim</span> <span class="o">&lt;-</span> <span class="nf">quantile</span><span class="p">(</span><span class="n">output</span><span class="p">,</span><span class="n">.</span><span class="m">95</span><span class="p">,</span> <span class="n">na.rm</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+                   <span class="nf">return</span><span class="p">(</span><span class="n">upperLim</span><span class="p">)</span>
+                 <span class="p">}),</span>
+   <span class="n">RNG_Lower</span>  <span class="o">=</span>  <span class="nf">apply</span><span class="p">(</span><span class="n">LidarVars_RNG</span><span class="p">[[</span><span class="n">ldStat</span><span class="p">]],</span> <span class="n">MARGIN</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">FUN</span><span class="o">=</span><span class="nf">function</span><span class="p">(</span><span class="n">ul</span><span class="p">){</span>
+                     <span class="n">output</span> <span class="o">&lt;-</span> <span class="nf">bsci</span><span class="p">(</span><span class="n">ul</span><span class="p">,</span> <span class="m">100</span><span class="p">)</span>
+                     <span class="n">upperLim</span> <span class="o">&lt;-</span> <span class="nf">quantile</span><span class="p">(</span><span class="n">output</span><span class="p">,</span><span class="n">.</span><span class="m">05</span><span class="p">,</span> <span class="n">na.rm</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+                   <span class="nf">return</span><span class="p">(</span><span class="n">upperLim</span><span class="p">)</span>
+                 <span class="p">}),</span>
+   <span class="n">Station</span> <span class="o">=</span> <span class="nf">rep</span><span class="p">(</span><span class="n">ldStat</span><span class="p">,</span><span class="m">197</span><span class="p">),</span>
+   <span class="n">Height</span> <span class="o">=</span> <span class="nf">seq</span><span class="p">(</span><span class="m">0.12</span><span class="p">,</span><span class="m">6</span><span class="p">,</span><span class="n">length.out</span> <span class="o">=</span> <span class="m">197</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="p">}</span>
+<span class="c1"># Remove memory heavy objects</span>
+
+<span class="nf">remove</span><span class="p">(</span><span class="n">LidarVars_BAE</span><span class="p">)</span>
+<span class="nf">remove</span><span class="p">(</span><span class="n">LidarVars_RNG</span><span class="p">)</span>
+<span class="nf">remove</span><span class="p">(</span><span class="n">LidarVars_StatRNG</span><span class="p">)</span>
+
+
+<span class="c1"># Bind lidar stations into a single dataset</span>
+<span class="n">BAE</span> <span class="o">&lt;-</span> <span class="nf">bind_rows</span><span class="p">(</span><span class="n">BAE_list</span><span class="p">,</span><span class="n">.id</span> <span class="o">=</span> <span class="s">"BindVar"</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="nf">select</span><span class="p">(</span><span class="o">-</span><span class="nf">c</span><span class="p">(</span><span class="n">BindVar</span><span class="p">))</span>
+
+<span class="c1"># Format for ggplot input</span>
+<span class="n">BAE_gg</span> <span class="o">&lt;-</span> <span class="nf">melt</span><span class="p">(</span><span class="n">BAE</span><span class="p">,</span> <span class="n">id.vars</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">"Height"</span><span class="p">,</span><span class="s">"Station"</span><span class="p">),</span> <span class="n">variable.name</span> <span class="o">=</span> <span class="s">"Dates"</span><span class="p">)</span> <span class="o">%&gt;%</span>
+          <span class="c1"># For absc532 and 1064</span>
+          <span class="nf">mutate</span><span class="p">(</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">*</span><span class="m">1E06</span><span class="p">)</span>
+
+<span class="n">BAE_gg</span><span class="o">$</span><span class="n">Stationf</span> <span class="o">&lt;-</span> <span class="nf">factor</span><span class="p">(</span><span class="n">BAE_gg</span><span class="o">$</span><span class="n">Station</span><span class="p">,</span> <span class="n">levels</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">"TYM"</span><span class="p">,</span><span class="s">"TKB"</span><span class="p">,</span><span class="s">"TKO"</span><span class="p">))</span>
+
+
+<span class="c1"># Colours for plot</span>
+<span class="n">my_colors</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">"seagreen1"</span><span class="p">,</span><span class="s">"seagreen4"</span><span class="p">,</span><span class="s">"seagreen1"</span><span class="p">,</span><span class="s">"orangered1"</span><span class="p">,</span> <span class="s">"orangered4"</span><span class="p">,</span> <span class="s">"orangered1"</span><span class="p">)</span>
+<span class="nf">names</span><span class="p">(</span><span class="n">my_colors</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nf">levels</span><span class="p">(</span><span class="nf">factor</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="nf">levels</span><span class="p">(</span><span class="n">BAE_gg</span><span class="o">$</span><span class="n">Dates</span><span class="p">),</span> <span class="nf">levels</span><span class="p">(</span><span class="n">BAE_gg</span><span class="o">$</span><span class="n">Dates</span><span class="p">))))</span>
+<span class="c1"># Spread variables to inout geo_ribbon and shade the area between curves</span>
+<span class="n">BAE_gg_Area</span> <span class="o">&lt;-</span> <span class="n">BAE_gg</span> <span class="o">%&gt;%</span> <span class="nf">spread</span><span class="p">(</span><span class="n">Dates</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+<span class="c1">#Plot Vertical profiles with 96% interval confidence for </span>
+<span class="c1">#3 lidar stations and one lidar variable</span>
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">BAE_gg</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">Height</span><span class="p">,</span><span class="n">value</span><span class="p">))</span> <span class="o">+</span> 
+  <span class="nf">geom_line</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">colour</span><span class="o">=</span><span class="n">Dates</span> <span class="p">))</span> <span class="o">+</span>
+  <span class="nf">scale_color_manual</span><span class="p">(</span><span class="n">values</span> <span class="o">=</span> <span class="n">my_colors</span><span class="p">,</span>
+                     <span class="n">name</span>  <span class="o">=</span><span class="s">"Dates"</span><span class="p">,</span>
+                     <span class="n">breaks</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">"subWeekly_Mean"</span><span class="p">,</span> <span class="s">"RNG_Mean"</span><span class="p">),</span>
+                     <span class="n">labels</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">"3.5 days\ncycle"</span><span class="p">,</span> <span class="s">"Random"</span><span class="p">))</span> <span class="o">+</span>
+  <span class="nf">geom_ribbon</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">BAE_gg_Area</span><span class="p">,</span> <span class="n">inherit.aes</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span>
+              <span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">Height</span><span class="p">,</span><span class="n">ymin</span><span class="o">=</span><span class="n">RNG_Lower</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="n">RNG_Upper</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=</span><span class="m">0.3</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s">"seagreen1"</span><span class="p">)</span> <span class="o">+</span>
+  <span class="nf">geom_ribbon</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">BAE_gg_Area</span><span class="p">,</span> <span class="n">inherit.aes</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span>
+              <span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">Height</span><span class="p">,</span><span class="n">ymin</span><span class="o">=</span><span class="n">subWeekly_Lower</span><span class="p">,</span><span class="n">ymax</span><span class="o">=</span><span class="n">subWeekly_Upper</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=</span><span class="m">0.3</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s">"orangered1"</span><span class="p">)</span> <span class="o">+</span>
+  <span class="nf">ylab</span><span class="p">(</span><span class="s">"absc532 [/Mm/sr]"</span><span class="p">)</span> <span class="o">+</span>
+  <span class="nf">xlab</span><span class="p">(</span><span class="s">"Altitude [km]"</span><span class="p">)</span> <span class="o">+</span>
+  <span class="nf">coord_cartesian</span><span class="p">(</span><span class="n">xlim</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">7</span><span class="p">))</span> <span class="o">+</span>
+  <span class="c1">#scale_y_continuous(breaks = round(seq(1,6, by = 1),1)) +</span>
+  <span class="nf">coord_flip</span><span class="p">()</span> <span class="o">+</span>
+  <span class="nf">theme</span><span class="p">(</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">15</span><span class="p">),</span>
+    <span class="n">panel.background</span> <span class="o">=</span> <span class="nf">element_blank</span><span class="p">(),</span>
+    <span class="n">panel.border</span> <span class="o">=</span> <span class="nf">element_rect</span><span class="p">(</span><span class="n">colour</span><span class="o">=</span><span class="s">"black"</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">NA</span><span class="p">)</span>
+  <span class="p">)</span> <span class="o">+</span>
+  <span class="c1">#geom_hline(yintercept=1,linetype="dashed") +</span>
+  <span class="nf">geom_vline</span><span class="p">(</span><span class="n">xintercept</span><span class="o">=</span><span class="m">4.3</span><span class="p">,</span><span class="n">linetype</span><span class="o">=</span><span class="s">"dashed"</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">"orange"</span><span class="p">)</span> <span class="o">+</span>
+  <span class="nf">geom_vline</span><span class="p">(</span><span class="n">xintercept</span><span class="o">=</span><span class="m">0.6</span><span class="p">,</span><span class="n">linetype</span><span class="o">=</span><span class="s">"dashed"</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">"royalblue3"</span><span class="p">)</span> <span class="o">+</span>
+  <span class="nf">geom_hline</span><span class="p">(</span><span class="n">yintercept</span><span class="o">=</span><span class="m">0.1</span><span class="p">,</span><span class="n">linetype</span><span class="o">=</span><span class="s">"dashed"</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">"lightsteelblue"</span><span class="p">)</span> <span class="o">+</span>
+  <span class="nf">ylim</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">6</span><span class="p">)</span> <span class="o">+</span>
+  <span class="nf">facet_wrap</span><span class="p">(</span><span class="o">~</span><span class="n">Stationf</span><span class="p">)</span>
+<span class="c1"># width = 800 height 700</span>
+<span class="nf">grid.text</span><span class="p">(</span><span class="s">"Confidence\ninterval 0.95\n\nTotal\nDateTimes:\nTKB: 7914\nTKO: 7384\nTYM: 3868"</span><span class="p">,</span>
+          <span class="n">x</span><span class="o">=</span><span class="nf">unit</span><span class="p">(</span><span class="m">0.85</span><span class="p">,</span><span class="s">"npc"</span><span class="p">),</span><span class="n">y</span><span class="o">=</span><span class="nf">unit</span><span class="p">(</span><span class="m">0.25</span><span class="p">,</span><span class="s">"npc"</span><span class="p">),</span><span class="n">just</span> <span class="o">=</span> <span class="s">"left"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Coordinate system already present. Adding new coordinate system, which will replace the existing one.
+</pre></div>
+</div>
+<img alt="_images/weekly-cycle-figures-ang_18_1.png" src="_images/weekly-cycle-figures-ang_18_1.png"/>
+</div>
+</div>
 </div>
 <div class="section" id="supplementary-figure-8">
 <h2>Supplementary Figure 8<a class="headerlink" href="#supplementary-figure-8" title="Permalink to this headline">¶</a></h2>
