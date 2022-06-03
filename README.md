@@ -2,8 +2,8 @@
 
 [![GH-pages](https://img.shields.io/badge/Code--Pages-Click--to--access-red)](https://alfontal.github.io/kd-metals-swc)
 ![license](https://img.shields.io/badge/license-BSD--3--Clause-green)
-![python](https://img.shields.io/badge/python-v3.8-orange)
-![R](https://img.shields.io/badge/R-v4.1.2-blue)
+![python](https://img.shields.io/badge/python-v3.8-orange?logo=Python&logoColor=white)
+![R](https://img.shields.io/badge/R-v4.1.2-blue?logo=R)
 
 
 This repository contains the materials and code necessary to reproduce the analysis on the manuscript 
