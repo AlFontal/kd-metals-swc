@@ -1,32 +1,30 @@
 <!DOCTYPE html>
 <html><head>
     <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+
     <title>Modelling the air sources with HYSPLIT — KD and metal rich aerosols</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet"/>
-  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet"/>
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
 
     
   <link href="_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
   <link as="font" crossorigin="" href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
   <link as="font" crossorigin="" href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
 
-    
-      
-
-    
     <link href="_static/pygments.css" rel="stylesheet" type="text/css"/>
-    <link href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" rel="stylesheet" type="text/css"/>
+    <link href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" rel="stylesheet" type="text/css"/>
     <link href="_static/togglebutton.css" rel="stylesheet" type="text/css"/>
     <link href="_static/copybutton.css" rel="stylesheet" type="text/css"/>
     <link href="_static/mystnb.css" rel="stylesheet" type="text/css"/>
     <link href="_static/sphinx-thebe.css" rel="stylesheet" type="text/css"/>
     <link href="_static/custom.css" rel="stylesheet" type="text/css"/>
-    <link href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" rel="stylesheet" type="text/css"/>
-    <link href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" rel="stylesheet" type="text/css"/>
+    <link href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" rel="stylesheet" type="text/css"/>
     
-  <link as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js" rel="preload"/>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -34,6 +32,7 @@
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -72,15 +71,15 @@ var addUtterances = () => {
 }
 commentsRunWhenDOMLoaded(addUtterances);
 </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link href="https://alfontal.github.io/kd-metals-swc/hysplit_trajectories.html" rel="canonical"/>
     <link href="_static/favicon.ico" rel="shortcut icon"/>
     <link href="genindex.html" rel="index" title="Index"/>
@@ -94,7 +93,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-offset="80" data-spy="scroll" data-target="#bd-toc-nav">
+  <body data-offset="60" data-spy="scroll" data-target="#bd-toc-nav">
+<!-- Checkboxes to toggle the left sidebar -->
+<input aria-label="Toggle navigation sidebar" class="sidebar-toggle" id="__navigation" name="__navigation" type="checkbox"/>
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input aria-label="Toggle in-page Table of Contents" class="sidebar-toggle" id="__page-toc" name="__page-toc" type="checkbox"/>
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -103,9 +116,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -123,14 +137,15 @@ const thebe_selector_output = ".output, .cell_output"
   <input aria-label="Search this book..." autocomplete="off" class="form-control" id="search-input" name="q" placeholder="Search this book..." type="search"/>
 </form><nav aria-label="Main" class="bd-links" id="bd-docs-nav">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="README.html">
-   README
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="README.html">
+                    README
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Notebooks
  </span>
@@ -154,10 +169,12 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
 <div>           
 <hr/>
 <a href="https://helical-itn.eu/">
@@ -170,81 +187,162 @@ const thebe_selector_output = ".output, .cell_output"
 
 </div>
 
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" class="navbar-toggler ml-0" data-placement="bottom" data-target=".site-navigation" data-toggle="collapse" id="navbar-toggler" title="Toggle navigation" type="button">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button aria-label="Download this page" class="btn btn-secondary topbarbtn" id="dropdown-buttons-trigger"><i class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/hysplit_trajectories.ipynb"><button class="btn btn-secondary topbarbtn" data-placement="left" data-toggle="tooltip" title="Download source file" type="button">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button class="btn btn-secondary topbarbtn" data-placement="left" data-toggle="tooltip" id="download-print" onclick="printPdf(this)" title="Print to PDF" type="button">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button aria-label="Connect with source repository" class="btn btn-secondary topbarbtn" id="dropdown-buttons-trigger"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button" href="https://github.com/AlFontal/kd-metals-swc"><button class="btn btn-secondary topbarbtn" data-placement="left" data-toggle="tooltip" title="Source repository" type="button"><i class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button" href="https://github.com/AlFontal/kd-metals-swc/issues/new?title=Issue%20on%20page%20%2Fhysplit_trajectories.html&amp;body=Your%20issue%20content%20here."><button class="btn btn-secondary topbarbtn" data-placement="left" data-toggle="tooltip" title="Open an issue" type="button"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button aria-label="Fullscreen mode" class="btn btn-secondary topbarbtn" data-placement="bottom" data-toggle="tooltip" onclick="toggleFullScreen()" title="Fullscreen mode" type="button"><i class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button aria-label="Launch interactive content" class="btn btn-secondary topbarbtn" id="dropdown-buttons-trigger"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/AlFontal/kd-metals-swc/main?urlpath=tree/hysplit_trajectories.ipynb"><button class="btn btn-secondary topbarbtn" data-placement="left" data-toggle="tooltip" title="Launch Binder" type="button"><img alt="Interact on binder" class="binder-button-logo" src="_static/images/logo_binder.svg"/>Binder</button></a>
-        
-        
-        
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
             </div>
-            <nav aria-label="Page" id="bd-toc-nav">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label class="headerbtn" data-placement="right" data-toggle="tooltip" for="__navigation" title="Toggle navigation">
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button aria-label="Launch interactive content" class="headerbtn menu-dropdown__trigger">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a class="headerbtn" data-placement="left" data-toggle="tooltip" href="https://mybinder.org/v2/gh/AlFontal/kd-metals-swc/main?urlpath=tree/hysplit_trajectories.ipynb" title="Launch on Binder">
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg"/>
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button class="headerbtn" data-placement="bottom" data-toggle="tooltip" onclick="toggleFullScreen()" title="Fullscreen mode">
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button aria-label="Source repositories" class="headerbtn menu-dropdown__trigger">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a class="headerbtn" data-placement="left" data-toggle="tooltip" href="https://github.com/AlFontal/kd-metals-swc" title="Source repository">
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a class="headerbtn" data-placement="left" data-toggle="tooltip" href="https://github.com/AlFontal/kd-metals-swc/issues/new?title=Issue%20on%20page%20%2Fhysplit_trajectories.html&amp;body=Your%20issue%20content%20here." title="Open an issue">
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button aria-label="Download this page" class="headerbtn menu-dropdown__trigger">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a class="headerbtn" data-placement="left" data-toggle="tooltip" href="_sources/hysplit_trajectories.ipynb" title="Download source file">
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button class="headerbtn" data-placement="left" data-toggle="tooltip" onclick="printPdf(this)" title="Print to PDF">
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label class="headerbtn headerbtn-page-toc" for="__page-toc">
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav aria-label="Page" id="bd-toc-nav">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#preamble">
    Preamble
@@ -291,12 +389,11 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div class="row" id="main-content">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div class="onlyprint" id="jb-print-docs-body">
                 <h1>Modelling the air sources with HYSPLIT</h1>
@@ -359,11 +456,12 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="modelling-the-air-sources-with-hysplit">
-<h1>Modelling the air sources with HYSPLIT<a class="headerlink" href="#modelling-the-air-sources-with-hysplit" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="modelling-the-air-sources-with-hysplit">
+<h1>Modelling the air sources with HYSPLIT<a class="headerlink" href="#modelling-the-air-sources-with-hysplit" title="Permalink to this headline">#</a></h1>
 <div class="contents local topic" id="contents">
 <ul class="simple">
 <li><p><a class="reference internal" href="#preamble" id="id1">Preamble</a></p>
@@ -382,10 +480,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p><a class="reference internal" href="#lidar-and-swc-plots" id="id8">LIDAR and SWC plots</a></p></li>
 </ul>
 </div>
-<div class="section" id="preamble">
-<h2><a class="toc-backref" href="#id1">Preamble</a><a class="headerlink" href="#preamble" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="imports">
-<h3><a class="toc-backref" href="#id2">Imports</a><a class="headerlink" href="#imports" title="Permalink to this headline">¶</a></h3>
+<section id="preamble">
+<h2><a class="toc-backref" href="#id1">Preamble</a><a class="headerlink" href="#preamble" title="Permalink to this headline">#</a></h2>
+<section id="imports">
+<h3><a class="toc-backref" href="#id2">Imports</a><a class="headerlink" href="#imports" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">shutil</span>
@@ -411,9 +509,9 @@ const thebe_selector_output = ".output, .cell_output"
 
 </div>
 </div>
-</div>
-<div class="section" id="presets">
-<h3><a class="toc-backref" href="#id3">Presets</a><a class="headerlink" href="#presets" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="presets">
+<h3><a class="toc-backref" href="#id3">Presets</a><a class="headerlink" href="#presets" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p9</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">'dpi'</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
@@ -437,10 +535,10 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="loading-data">
-<h2><a class="toc-backref" href="#id4">Loading data</a><a class="headerlink" href="#loading-data" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="loading-data">
+<h2><a class="toc-backref" href="#id4">Loading data</a><a class="headerlink" href="#loading-data" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shape_url</span> <span class="o">=</span> <span class="s2">"https://naturalearth.s3.amazonaws.com/50m_cultural/ne_50m_admin_0_countries.zip"</span>
@@ -466,11 +564,11 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="trajectories">
-<h2><a class="toc-backref" href="#id5">Trajectories</a><a class="headerlink" href="#trajectories" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="kumamoto-mar-apr-2011">
-<h3><a class="toc-backref" href="#id6">Kumamoto (Mar-Apr 2011)</a><a class="headerlink" href="#kumamoto-mar-apr-2011" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="trajectories">
+<h2><a class="toc-backref" href="#id5">Trajectories</a><a class="headerlink" href="#trajectories" title="Permalink to this headline">#</a></h2>
+<section id="kumamoto-mar-apr-2011">
+<h3><a class="toc-backref" href="#id6">Kumamoto (Mar-Apr 2011)</a><a class="headerlink" href="#kumamoto-mar-apr-2011" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pysplit</span><span class="o">.</span><span class="n">generate_bulktraj</span><span class="p">(</span><span class="s1">'kumamoto'</span><span class="p">,</span>
@@ -829,9 +927,9 @@ const thebe_selector_output = ".output, .cell_output"
 
 </div>
 </div>
-</div>
-<div class="section" id="all-of-japan-2010-2016">
-<h3><a class="toc-backref" href="#id7">All of Japan (2010-2016)</a><a class="headerlink" href="#all-of-japan-2010-2016" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="all-of-japan-2010-2016">
+<h3><a class="toc-backref" href="#id7">All of Japan (2010-2016)</a><a class="headerlink" href="#all-of-japan-2010-2016" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kd_ts</span> <span class="o">=</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">'../data/kd_daily.xlsx'</span><span class="p">)</span>
@@ -1092,10 +1190,10 @@ dtype: float64
 <img alt="_images/hysplit_trajectories_47_0.png" src="_images/hysplit_trajectories_47_0.png"/>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="lidar-and-swc-plots">
-<h2><a class="toc-backref" href="#id8">LIDAR and SWC plots</a><a class="headerlink" href="#lidar-and-swc-plots" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="lidar-and-swc-plots">
+<h2><a class="toc-backref" href="#id8">LIDAR and SWC plots</a><a class="headerlink" href="#lidar-and-swc-plots" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">absc_df</span> <span class="o">=</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'../data/absc532_1064_TKB_TKO_TYM_2010_16.csv'</span><span class="p">)</span>
@@ -1384,8 +1482,8 @@ f
 
 </div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1409,9 +1507,11 @@ f
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class="prev-next-area"> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class="prev-next-area">
     <a class="left-prev" href="README.html" id="prev-link" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -1427,24 +1527,28 @@ f
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Alejandro Fontal, Albert Navarro, Xavier Rodó<br/>
+  
+      © Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
     
-      By Alejandro Fontal, Albert Navarro, Xavier Rodó<br/>
-    
-        © Copyright 2022.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   
 </body></html>
