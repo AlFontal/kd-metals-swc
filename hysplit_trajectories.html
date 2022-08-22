@@ -652,7 +652,7 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">HYSPLIT_DIR</span> <span class="o">=</span> <span class="s1">'/home/afontal/utils/hysplit/exec/hyts_std'</span>
 <span class="n">HYSPLIT_WORKING</span> <span class="o">=</span> <span class="s1">'/home/afontal/utils/hysplit/working'</span>
 <span class="n">METEO_DIR</span> <span class="o">=</span> <span class="s1">'/home/afontal/utils/hysplit/meteo/gdas1'</span>
-<span class="n">OUT_DIR</span> <span class="o">=</span> <span class="s1">'/home/afontal/projects/kd_subweekly_cycle/output/trajectories'</span>
+<span class="n">OUT_DIR</span> <span class="o">=</span> <span class="s1">'/home/afontal/projects/kd-metals-swc/output/trajectories'</span>
 </pre></div>
 </div>
 </div>
@@ -679,7 +679,8 @@ const thebe_selector_output = ".output, .cell_output"
                           <span class="n">altitudes</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span>
                           <span class="n">coordinates</span><span class="o">=</span><span class="p">(</span><span class="mf">32.80589</span><span class="p">,</span> <span class="mf">130.69181</span><span class="p">),</span>
                           <span class="n">run</span><span class="o">=-</span><span class="mi">96</span><span class="p">,</span>
-                          <span class="n">meteo_bookends</span><span class="o">=</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[])</span>
+                          <span class="n">meteo_bookends</span><span class="o">=</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[]),</span> 
+                          <span class="n">get_reverse</span><span class="o">=</span><span class="kc">True</span>
     <span class="p">)</span>
 </pre></div>
 </div>
@@ -687,7 +688,14 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">all_trajs</span> <span class="o">=</span> <span class="n">pysplit</span><span class="o">.</span><span class="n">make_trajectorygroup</span><span class="p">(</span><span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">OUT_DIR</span><span class="si">}</span><span class="s1">/kumamoto/*'</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">all_trajs</span> <span class="o">=</span> <span class="n">pysplit</span><span class="o">.</span><span class="n">make_trajectorygroup</span><span class="p">(</span><span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">OUT_DIR</span><span class="si">}</span><span class="s1">/kumamoto/original/*'</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reverse_trajs</span> <span class="o">=</span> <span class="n">pysplit</span><span class="o">.</span><span class="n">make_trajectorygroup</span><span class="p">(</span><span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">OUT_DIR</span><span class="si">}</span><span class="s1">/kumamoto/reversetraj/*'</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -698,10 +706,198 @@ const thebe_selector_output = ".output, .cell_output"
                          <span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'Temperature_C'</span><span class="p">,</span>  <span class="s1">'Temperature'</span><span class="p">,</span> <span class="s1">'Mixing_Depth'</span><span class="p">])</span>
                          <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">start_time</span><span class="o">=</span><span class="k">lambda</span> <span class="n">dd</span><span class="p">:</span> <span class="n">dd</span><span class="o">.</span><span class="n">DateTime</span> <span class="o">-</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_timedelta</span><span class="p">(</span><span class="n">dd</span><span class="o">.</span><span class="n">Timestep</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">'h'</span><span class="p">))</span>
                          <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">date</span><span class="o">=</span><span class="k">lambda</span> <span class="n">dd</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">dd</span><span class="o">.</span><span class="n">start_time</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">date</span><span class="p">))</span>
+                         <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">hour</span><span class="o">=</span><span class="k">lambda</span> <span class="n">dd</span><span class="p">:</span> <span class="n">dd</span><span class="o">.</span><span class="n">start_time</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">hour</span><span class="p">)</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 </div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reverse_trajectories_data</span> <span class="o">=</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">t</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">traj_id</span><span class="o">=</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">reverse_trajs</span><span class="p">)])</span>
+                                <span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'Temperature_C'</span><span class="p">,</span>  <span class="s1">'Temperature'</span><span class="p">,</span> <span class="s1">'Mixing_Depth'</span><span class="p">])</span>
+                                <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">start_time</span><span class="o">=</span><span class="k">lambda</span> <span class="n">dd</span><span class="p">:</span> <span class="n">dd</span><span class="o">.</span><span class="n">DateTime</span> <span class="o">-</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_timedelta</span><span class="p">(</span><span class="n">dd</span><span class="o">.</span><span class="n">Timestep</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">'h'</span><span class="p">)</span> <span class="o">+</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_timedelta</span><span class="p">(</span><span class="mi">96</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">'h'</span><span class="p">))</span>
+                                <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">date</span><span class="o">=</span><span class="k">lambda</span> <span class="n">dd</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">dd</span><span class="o">.</span><span class="n">start_time</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">date</span><span class="p">))</span>
+                                <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">hour</span><span class="o">=</span><span class="k">lambda</span> <span class="n">dd</span><span class="p">:</span> <span class="n">dd</span><span class="o">.</span><span class="n">start_time</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">hour</span><span class="p">)</span>
+                                <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">Timestep</span><span class="o">=</span><span class="k">lambda</span> <span class="n">dd</span><span class="p">:</span> <span class="n">dd</span><span class="o">.</span><span class="n">Timestep</span> <span class="o">+</span> <span class="mi">96</span><span class="p">)</span>
+
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">all_trajectories_data</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">reverse_trajectories_data</span><span class="p">[[</span><span class="s1">'geometry'</span><span class="p">,</span> <span class="s1">'Timestep'</span><span class="p">,</span> <span class="s1">'start_time'</span><span class="p">,</span> <span class="s1">'hour'</span><span class="p">]],</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s1">''</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Timestep</th>
+      <th>Pressure</th>
+      <th>geometry</th>
+      <th>DateTime</th>
+      <th>traj_id</th>
+      <th>start_time</th>
+      <th>date</th>
+      <th>hour</th>
+    </tr>
+    <tr>
+      <th>Timestep</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>96.0</th>
+      <td>96.0</td>
+      <td>952.2</td>
+      <td>POINT Z (130.84400 32.99400 8.70000)</td>
+      <td>2011-03-01 03:00:00</td>
+      <td>243</td>
+      <td>2011-03-01 03:00:00</td>
+      <td>2011-03-01</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>94.0</th>
+      <td>94.0</td>
+      <td>946.1</td>
+      <td>POINT Z (132.04500 32.34700 526.40000)</td>
+      <td>2011-03-01 04:00:00</td>
+      <td>343</td>
+      <td>2011-03-01 06:00:00</td>
+      <td>2011-03-01</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>95.0</th>
+      <td>95.0</td>
+      <td>941.8</td>
+      <td>POINT Z (132.22700 32.34900 541.80000)</td>
+      <td>2011-03-01 05:00:00</td>
+      <td>343</td>
+      <td>2011-03-01 06:00:00</td>
+      <td>2011-03-01</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>96.0</th>
+      <td>96.0</td>
+      <td>937.7</td>
+      <td>POINT Z (132.47800 32.36700 551.90000)</td>
+      <td>2011-03-01 06:00:00</td>
+      <td>343</td>
+      <td>2011-03-01 06:00:00</td>
+      <td>2011-03-01</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>0.0</th>
+      <td>0.0</td>
+      <td>885.8</td>
+      <td>POINT Z (131.06700 34.93000 1201.50000)</td>
+      <td>2011-02-25 21:00:00</td>
+      <td>63</td>
+      <td>2011-03-01 21:00:00</td>
+      <td>2011-03-01</td>
+      <td>21</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>72.0</th>
+      <td>72.0</td>
+      <td>1017.4</td>
+      <td>POINT Z (131.72800 27.89100 0.40000)</td>
+      <td>2011-04-29 21:00:00</td>
+      <td>113</td>
+      <td>2011-04-30 21:00:00</td>
+      <td>2011-04-30</td>
+      <td>21</td>
+    </tr>
+    <tr>
+      <th>73.0</th>
+      <td>73.0</td>
+      <td>1017.2</td>
+      <td>POINT Z (131.57100 28.10500 0.50000)</td>
+      <td>2011-04-29 22:00:00</td>
+      <td>113</td>
+      <td>2011-04-30 21:00:00</td>
+      <td>2011-04-30</td>
+      <td>21</td>
+    </tr>
+    <tr>
+      <th>74.0</th>
+      <td>74.0</td>
+      <td>1017.0</td>
+      <td>POINT Z (131.42600 28.34700 0.50000)</td>
+      <td>2011-04-29 23:00:00</td>
+      <td>113</td>
+      <td>2011-04-30 21:00:00</td>
+      <td>2011-04-30</td>
+      <td>21</td>
+    </tr>
+    <tr>
+      <th>60.0</th>
+      <td>60.0</td>
+      <td>1018.3</td>
+      <td>POINT Z (133.89800 27.11400 6.60000)</td>
+      <td>2011-04-29 09:00:00</td>
+      <td>113</td>
+      <td>2011-04-30 21:00:00</td>
+      <td>2011-04-30</td>
+      <td>21</td>
+    </tr>
+    <tr>
+      <th>1.0</th>
+      <td>1.0</td>
+      <td>990.7</td>
+      <td>POINT Z (121.52100 39.47500 78.80000)</td>
+      <td>2011-04-26 10:00:00</td>
+      <td>443</td>
+      <td>2011-04-30 09:00:00</td>
+      <td>2011-04-30</td>
+      <td>9</td>
+    </tr>
+  </tbody>
+</table>
+<p>47336 rows × 8 columns</p>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -737,7 +933,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/hysplit_trajectories_21_0.png" src="_images/hysplit_trajectories_21_0.png"/>
+<img alt="_images/hysplit_trajectories_25_0.png" src="_images/hysplit_trajectories_25_0.png"/>
 
 </div>
 </div>
@@ -762,7 +958,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/hysplit_trajectories_22_0.png" src="_images/hysplit_trajectories_22_0.png"/>
+<img alt="_images/hysplit_trajectories_26_0.png" src="_images/hysplit_trajectories_26_0.png"/>
 
 </div>
 </div>
@@ -807,7 +1003,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/hysplit_trajectories_26_0.png" src="_images/hysplit_trajectories_26_0.png"/>
+<img alt="_images/hysplit_trajectories_30_0.png" src="_images/hysplit_trajectories_30_0.png"/>
 
 </div>
 </div>
@@ -832,7 +1028,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/hysplit_trajectories_27_0.png" src="_images/hysplit_trajectories_27_0.png"/>
+<img alt="_images/hysplit_trajectories_31_0.png" src="_images/hysplit_trajectories_31_0.png"/>
 
 </div>
 </div>
@@ -876,7 +1072,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/hysplit_trajectories_30_0.png" src="_images/hysplit_trajectories_30_0.png"/>
+<img alt="_images/hysplit_trajectories_34_0.png" src="_images/hysplit_trajectories_34_0.png"/>
 </div>
 </div>
 </section>
@@ -896,7 +1092,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/hysplit_trajectories_33_0.svg" src="_images/hysplit_trajectories_33_0.svg"/></div>
+<img alt="_images/hysplit_trajectories_37_0.svg" src="_images/hysplit_trajectories_37_0.svg"/></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -921,7 +1117,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/hysplit_trajectories_34_0.png" src="_images/hysplit_trajectories_34_0.png"/>
+<img alt="_images/hysplit_trajectories_38_0.png" src="_images/hysplit_trajectories_38_0.png"/>
 
 </div>
 </div>
@@ -944,7 +1140,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/hysplit_trajectories_36_0.png" src="_images/hysplit_trajectories_36_0.png"/>
+<img alt="_images/hysplit_trajectories_40_0.png" src="_images/hysplit_trajectories_40_0.png"/>
 </div>
 </div>
 </section>
@@ -1010,7 +1206,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/hysplit_trajectories_39_0.png" src="_images/hysplit_trajectories_39_0.png"/>
+<img alt="_images/hysplit_trajectories_43_0.png" src="_images/hysplit_trajectories_43_0.png"/>
 </div>
 </div>
 <div class="cell docutils container">
@@ -1040,7 +1236,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/hysplit_trajectories_40_0.png" src="_images/hysplit_trajectories_40_0.png"/>
+<img alt="_images/hysplit_trajectories_44_0.png" src="_images/hysplit_trajectories_44_0.png"/>
 </div>
 </div>
 </section>
@@ -1079,7 +1275,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/hysplit_trajectories_43_0.png" src="_images/hysplit_trajectories_43_0.png"/>
+<img alt="_images/hysplit_trajectories_47_0.png" src="_images/hysplit_trajectories_47_0.png"/>
 
 </div>
 </div>
@@ -1101,7 +1297,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/hysplit_trajectories_44_0.png" src="_images/hysplit_trajectories_44_0.png"/>
+<img alt="_images/hysplit_trajectories_48_0.png" src="_images/hysplit_trajectories_48_0.png"/>
 
 </div>
 </div>
@@ -1126,7 +1322,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/hysplit_trajectories_45_0.png" src="_images/hysplit_trajectories_45_0.png"/>
+<img alt="_images/hysplit_trajectories_49_0.png" src="_images/hysplit_trajectories_49_0.png"/>
 
 </div>
 </div>
@@ -1153,7 +1349,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/hysplit_trajectories_46_0.png" src="_images/hysplit_trajectories_46_0.png"/>
+<img alt="_images/hysplit_trajectories_50_0.png" src="_images/hysplit_trajectories_50_0.png"/>
 
 </div>
 </div>
@@ -1186,7 +1382,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/hysplit_trajectories_47_0.png" src="_images/hysplit_trajectories_47_0.png"/>
+<img alt="_images/hysplit_trajectories_51_0.png" src="_images/hysplit_trajectories_51_0.png"/>
 
 </div>
 </div>
@@ -1219,7 +1415,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/hysplit_trajectories_50_0.png" src="_images/hysplit_trajectories_50_0.png"/>
+<img alt="_images/hysplit_trajectories_54_0.png" src="_images/hysplit_trajectories_54_0.png"/>
 
 </div>
 </div>
@@ -1255,7 +1451,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/hysplit_trajectories_52_0.png" src="_images/hysplit_trajectories_52_0.png"/>
+<img alt="_images/hysplit_trajectories_56_0.png" src="_images/hysplit_trajectories_56_0.png"/>
 </div>
 </div>
 <div class="cell docutils container">
@@ -1359,7 +1555,7 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/hysplit_trajectories_59_0.png" src="_images/hysplit_trajectories_59_0.png"/>
+<img alt="_images/hysplit_trajectories_63_0.png" src="_images/hysplit_trajectories_63_0.png"/>
 </div>
 </div>
 <div class="cell docutils container">
@@ -1413,7 +1609,7 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/hysplit_trajectories_61_0.png" src="_images/hysplit_trajectories_61_0.png"/>
+<img alt="_images/hysplit_trajectories_65_0.png" src="_images/hysplit_trajectories_65_0.png"/>
 </div>
 </div>
 <div class="cell docutils container">
@@ -1451,7 +1647,7 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/hysplit_trajectories_62_0.png" src="_images/hysplit_trajectories_62_0.png"/>
+<img alt="_images/hysplit_trajectories_66_0.png" src="_images/hysplit_trajectories_66_0.png"/>
 </div>
 </div>
 </section>
@@ -1502,7 +1698,7 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/hysplit_trajectories_67_0.png" src="_images/hysplit_trajectories_67_0.png"/>
+<img alt="_images/hysplit_trajectories_71_0.png" src="_images/hysplit_trajectories_71_0.png"/>
 
 </div>
 </div>
@@ -1527,7 +1723,7 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/hysplit_trajectories_68_0.png" src="_images/hysplit_trajectories_68_0.png"/>
+<img alt="_images/hysplit_trajectories_72_0.png" src="_images/hysplit_trajectories_72_0.png"/>
 
 </div>
 </div>
@@ -1552,7 +1748,7 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/hysplit_trajectories_69_0.png" src="_images/hysplit_trajectories_69_0.png"/>
+<img alt="_images/hysplit_trajectories_73_0.png" src="_images/hysplit_trajectories_73_0.png"/>
 
 </div>
 </div>
@@ -1577,7 +1773,7 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/hysplit_trajectories_70_0.png" src="_images/hysplit_trajectories_70_0.png"/>
+<img alt="_images/hysplit_trajectories_74_0.png" src="_images/hysplit_trajectories_74_0.png"/>
 
 </div>
 </div>
@@ -1605,7 +1801,7 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/hysplit_trajectories_71_0.png" src="_images/hysplit_trajectories_71_0.png"/>
+<img alt="_images/hysplit_trajectories_75_0.png" src="_images/hysplit_trajectories_75_0.png"/>
 
 </div>
 </div>
@@ -1638,7 +1834,7 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/hysplit_trajectories_72_0.png" src="_images/hysplit_trajectories_72_0.png"/>
+<img alt="_images/hysplit_trajectories_76_0.png" src="_images/hysplit_trajectories_76_0.png"/>
 
 </div>
 </div>
@@ -1707,7 +1903,7 @@ f
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R[write to console]: Saving 5.33 x 3 in image
 </pre></div>
 </div>
-<img alt="_images/hysplit_trajectories_77_1.png" src="_images/hysplit_trajectories_77_1.png"/>
+<img alt="_images/hysplit_trajectories_81_1.png" src="_images/hysplit_trajectories_81_1.png"/>
 </div>
 </div>
 <div class="cell docutils container">
@@ -1742,7 +1938,7 @@ f
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/hysplit_trajectories_78_0.png" src="_images/hysplit_trajectories_78_0.png"/>
+<img alt="_images/hysplit_trajectories_82_0.png" src="_images/hysplit_trajectories_82_0.png"/>
 
 </div>
 </div>
