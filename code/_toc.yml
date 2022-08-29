@@ -9,3 +9,6 @@ parts:
     title: Chemistry and KD synchrony
   - file: weekly-cycle-figures-ang
     title: Sub-weekly Cycle Figures
+  - file: other_diseases_weekly
+    title: Weekly cycle in other diseases
+
