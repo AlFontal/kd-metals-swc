@@ -103,4 +103,12 @@ Analysis and figures related to the LIDAR profiles and subweekly cycle of Kawasa
 ![Figure 6](https://lh6.googleusercontent.com/4I6hHKc77OJ34k-HXiCk8ocebNBisUABex3wFUSVo6mwFmqd3StxR_X4A-B1v1v1n7Rp-6M4gbVwF8ypIhqgp66OjF6r4Yon6ea1nfLHej9ujAkMX3bRn-YeBdsUKxECNVfQkDsquL5Hr_G6uQ)
 <figcaption align = "center"><b>Figure 6</b> </figcaption>
 
+### 4. Weekly cycle for KD vs other diseases.
+
+This notebook can be accessed [**here**](https://alfontal.github.io/kd-metals-swc/other_diseases_weekly.html).
+
+Analysis and figures related to the computation of the weekly cycle of Heat Strokes and Influenza A in Japanese areas compared to the equivalent cycles for Kawasaki Disease.
+
+![Figure R](https://lh5.googleusercontent.com/QEy35yV1MDKer56UGSSXMc2ToOQiqiRzqQwsfuX6TrUKNPvWgOwzu-82cmAd8MjTk0k5pKHDx06bXwbjUeTJCvE2UGwLBICIVAvJa0yQFdsx-66oGtO1r9lK7gN9jW9TLeoH3tHnD4bWUtCG3vfD7WNuwn3d2ZnzWS7vET9RSLqmMduqunzoL2kaeA)
+
 
