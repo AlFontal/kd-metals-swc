@@ -1,38 +1,49 @@
 <!DOCTYPE html>
-<html><head>
+<html lang="en"><head>
     <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.18.1: http://docutils.sourceforge.net/" name="generator"/>
 
     <title>README — KD and metal rich aerosols</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
-<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet"/>
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet"/>
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet"/>
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet"/>
 
-    
-  <link href="_static/vendor/fontawesome/5.13.0/css/all.min.css" rel="stylesheet"/>
-  <link as="font" crossorigin="" href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
-  <link as="font" crossorigin="" href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet"/>
+  <link as="font" crossorigin="" href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" rel="preload" type="font/woff2"/>
 
     <link href="_static/pygments.css" rel="stylesheet" type="text/css"/>
-    <link href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" rel="stylesheet" type="text/css"/>
+    <link href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" rel="stylesheet" type="text/css"/>
     <link href="_static/togglebutton.css" rel="stylesheet" type="text/css"/>
     <link href="_static/copybutton.css" rel="stylesheet" type="text/css"/>
-    <link href="_static/mystnb.css" rel="stylesheet" type="text/css"/>
+    <link href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" rel="stylesheet" type="text/css"/>
     <link href="_static/sphinx-thebe.css" rel="stylesheet" type="text/css"/>
     <link href="_static/custom.css" rel="stylesheet" type="text/css"/>
-    <link href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" rel="stylesheet" type="text/css"/>
-    
+    <link href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" rel="stylesheet" type="text/css"/>
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf" rel="preload"/>
+  <link as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" rel="preload"/>
+<link as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" rel="preload"/>
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -72,78 +83,92 @@ var addUtterances = () => {
 commentsRunWhenDOMLoaded(addUtterances);
 </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-DC18W62KP8"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-DC18W62KP8');
+            </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'README';</script>
     <link href="https://alfontal.github.io/kd-metals-swc/README.html" rel="canonical"/>
     <link href="_static/favicon.ico" rel="shortcut icon"/>
     <link href="genindex.html" rel="index" title="Index"/>
     <link href="search.html" rel="search" title="Search"/>
     <link href="hysplit_trajectories.html" rel="next" title="Modelling the air sources with HYSPLIT"/>
-    <meta content="width=device-width, initial-scale=1" name="viewport"/>
-    <meta content="None" name="docsearch:language"/>
-    
-
-    <!-- Google Analytics -->
-    
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-DC18W62KP8"></script>
-<script>
-                    window.dataLayer = window.dataLayer || [];
-                    function gtag(){ dataLayer.push(arguments); }
-                    gtag('js', new Date());
-                    gtag('config', 'G-DC18W62KP8');
-                </script>
-
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <meta content="en" name="docsearch:language"/>
   </head>
-  <body data-offset="60" data-spy="scroll" data-target="#bd-toc-nav">
-<!-- Checkboxes to toggle the left sidebar -->
-<input aria-label="Toggle navigation sidebar" class="sidebar-toggle" id="__navigation" name="__navigation" type="checkbox"/>
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input aria-label="Toggle in-page Table of Contents" class="sidebar-toggle" id="__page-toc" name="__page-toc" type="checkbox"/>
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-root-margin="0px 0px -60%" data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-default-mode="" data-offset="180">
 
-    
-    <div class="container-fluid" id="banner"></div>
-
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input class="sidebar-toggle" id="__primary" name="__primary" type="checkbox"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input class="sidebar-toggle" id="__secondary" name="__secondary" type="checkbox"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form action="search.html" class="bd-search d-flex align-items-center" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input aria-label="Search this book..." autocapitalize="off" autocomplete="off" autocorrect="off" class="form-control" id="search-input" name="q" placeholder="Search this book..." spellcheck="false" type="search"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="#">
+  
+  
+  
+  
+    
+    
       
-      
-      <img alt="logo" class="logo" src="_static/logo.png"/>
-      
-      
-      <h1 class="site-logo" id="site-title">KD and metal rich aerosols</h1>
-      
-    </a>
-</div><form action="search.html" class="bd-search d-flex align-items-center" method="get">
-  <i class="icon fas fa-search"></i>
-  <input aria-label="Search this book..." autocomplete="off" class="form-control" id="search-input" name="q" placeholder="Search this book..." type="search"/>
-</form><nav aria-label="Main" class="bd-links" id="bd-docs-nav">
-    <div class="bd-toc-item active">
+    
+    
+    <img alt="Logo image" class="logo__image only-light" src="_static/logo.png"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav aria-label="Main" class="bd-links" id="bd-docs-nav">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1 current active">
@@ -152,329 +177,214 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Notebooks
- </span>
-</p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Notebooks</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="hysplit_trajectories.html">
-   HYSPLIT backtrajectories
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="metals.html">
-   Chemistry and KD synchrony
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="weekly-cycle-figures-ang.html">
-   Sub-weekly Cycle Figures
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="other_diseases_weekly.html">
-   Weekly cycle in other diseases
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="hysplit_trajectories.html">HYSPLIT backtrajectories</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metals.html">Chemistry and KD synchrony</a></li>
+<li class="toctree-l1"><a class="reference internal" href="weekly-cycle-figures-ang.html">Sub-weekly Cycle Figures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="winds.html">North-Westerly Winds computation</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
-<div>           
-<hr/>
-<a href="https://helical-itn.github.io/">
-<img src="https://helical-itn.github.io/assets/institutional_logos/helical-logo.png" width="200px"/>
-</a>
-<p></p>
-<a href="https://www.isglobal.org/en/-/clima-y-salud">
-<img src="https://www.isglobal.org/isglobal-new-theme/assets/images/isglobal/logo-isglobal-en.png" width="200px"/>
-</a>
-
-</div>
-
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
-          
+      </div>
+      
+      <main class="bd-main" id="main-content">
+        
+        
 
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
 <div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
 
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label class="headerbtn" data-placement="right" data-toggle="tooltip" for="__navigation" title="Toggle navigation">
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" data-bs-placement="bottom" data-bs-toggle="tooltip" for="__primary" title="Toggle primary sidebar">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
-    <div class="header-article__right">
-<button class="headerbtn" data-placement="bottom" data-toggle="tooltip" onclick="toggleFullScreen()" title="Fullscreen mode">
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button aria-expanded="false" aria-label="Source repositories" class="btn dropdown-toggle" data-bs-toggle="dropdown" type="button">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a class="btn btn-sm btn-source-repository-button dropdown-item" data-bs-placement="left" data-bs-toggle="tooltip" href="https://github.com/AlFontal/kd-metals-swc" target="_blank" title="Source repository">
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a class="btn btn-sm btn-source-issues-button dropdown-item" data-bs-placement="left" data-bs-toggle="tooltip" href="https://github.com/AlFontal/kd-metals-swc/issues/new?title=Issue%20on%20page%20%2FREADME.html&amp;body=Your%20issue%20content%20here." target="_blank" title="Open an issue">
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button aria-expanded="false" aria-label="Download this page" class="btn dropdown-toggle" data-bs-toggle="dropdown" type="button">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a class="btn btn-sm btn-download-source-button dropdown-item" data-bs-placement="left" data-bs-toggle="tooltip" href="_sources/README.md" target="_blank" title="Download source file">
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button class="btn btn-sm btn-download-pdf-button dropdown-item" data-bs-placement="left" data-bs-toggle="tooltip" onclick="window.print()" title="Print to PDF">
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button class="btn btn-sm btn-fullscreen-button" data-bs-placement="bottom" data-bs-toggle="tooltip" onclick="toggleFullScreen()" title="Fullscreen mode">
+  
+
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button aria-label="Source repositories" class="headerbtn menu-dropdown__trigger">
-      <i class="fab fa-github"></i>
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a class="headerbtn" data-placement="left" data-toggle="tooltip" href="https://github.com/AlFontal/kd-metals-swc" title="Source repository">
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a class="headerbtn" data-placement="left" data-toggle="tooltip" href="https://github.com/AlFontal/kd-metals-swc/issues/new?title=Issue%20on%20page%20%2FREADME.html&amp;body=Your%20issue%20content%20here." title="Open an issue">
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button aria-label="Download this page" class="headerbtn menu-dropdown__trigger">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a class="headerbtn" data-placement="left" data-toggle="tooltip" href="_sources/README.md" title="Download source file">
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.md</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button class="headerbtn" data-placement="left" data-toggle="tooltip" onclick="printPdf(this)" title="Print to PDF">
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label class="headerbtn headerbtn-page-toc" for="__page-toc">
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" data-bs-placement="bottom" data-bs-toggle="tooltip" for="__secondary" title="Toggle secondary sidebar">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav aria-label="Page" id="bd-toc-nav">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#reproducibility">
-   Reproducibility
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#python">
-     Python
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#r">
-     R
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hysplit">
-     HYSPLIT
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#meteorology-data">
-       Meteorology data
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code">
-   Code
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hysplit-trajectories">
-     1. HYSPLIT trajectories
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#metal-rich-aerosols-and-kd-in-kumamoto">
-     2. Metal-rich aerosols and KD in Kumamoto
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#kawasaki-disease-s-sub-weekly-cycle-figures">
-     3. Kawasaki Disease’s sub-weekly cycle figures.
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#weekly-cycle-for-kd-vs-other-diseases">
-     4. Weekly cycle for KD vs other diseases.
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div class="onlyprint" id="jb-print-docs-body">
-                <h1>README</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#reproducibility">
-   Reproducibility
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#python">
-     Python
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#r">
-     R
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hysplit">
-     HYSPLIT
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#meteorology-data">
-       Meteorology data
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code">
-   Code
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hysplit-trajectories">
-     1. HYSPLIT trajectories
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#metal-rich-aerosols-and-kd-in-kumamoto">
-     2. Metal-rich aerosols and KD in Kumamoto
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#kawasaki-disease-s-sub-weekly-cycle-figures">
-     3. Kawasaki Disease’s sub-weekly cycle figures.
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#weekly-cycle-for-kd-vs-other-diseases">
-     4. Weekly cycle for KD vs other diseases.
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div class="onlyprint" id="jb-print-docs-body">
+    <h1>README</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproducibility">Reproducibility</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python">Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#r">R</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hysplit">HYSPLIT</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#meteorology-data">Meteorology data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code">Code</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hysplit-trajectories">1. HYSPLIT trajectories</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metal-rich-aerosols-and-kd-in-kumamoto">2. Metal-rich aerosols and KD in Kumamoto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kawasaki-disease-s-sub-weekly-cycle-figures">3. Kawasaki Disease’s sub-weekly cycle figures.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#weekly-cycle-for-kd-vs-other-diseases">4. Weekly cycle for KD vs other diseases.</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="readme">
-<h1>README<a class="headerlink" href="#readme" title="Permalink to this headline">#</a></h1>
+<h1>README<a class="headerlink" href="#readme" title="Permalink to this heading">#</a></h1>
 <p><img alt="license" src="https://img.shields.io/badge/license-BSD--3--Clause-green"/>
 <img alt="python" src="https://img.shields.io/badge/python-v3.8-orange?logo=Python&amp;logoColor=white"/>
 <img alt="R" src="https://img.shields.io/badge/R-v4.1.2-blue?logo=R"/></p>
@@ -486,7 +396,7 @@ experiments, we are sharing the repository (which can be cloned and then execute
 the step-by-step code used to generate the analyses and figures shown in the manuscript (and possibly some more).</p>
 <p>To ensure the anonimity during the peer-review process, we are using <a class="reference external" href="https://gitfront.io/">Gitfront</a> to expose a read-only version of the repository which can only be accessed through the shared link. Since most of the code is based on Jupyter Notebooks executing Python and R code, and Gitfront doesn’t render them in a nice manner, the Github Pages site (rendered thanks to the <a class="reference external" href="https://jupyterbook.org/">Jupyterbook</a> and <a class="reference external" href="https://www.sphinx-doc.org/">Sphinx</a> projects) of the repo can be accessed through the <span class="xref myst">GitHub Pages Site</span> with a nice render of the notebooks.</p>
 <section id="reproducibility">
-<h2>Reproducibility<a class="headerlink" href="#reproducibility" title="Permalink to this headline">#</a></h2>
+<h2>Reproducibility<a class="headerlink" href="#reproducibility" title="Permalink to this heading">#</a></h2>
 <p>The main requirements to execute the code will be to have installed in your computing environment:</p>
 <ul class="simple">
 <li><p>Python &gt;=3.8</p></li>
@@ -495,12 +405,12 @@ the step-by-step code used to generate the analyses and figures shown in the man
 </ul>
 <p>Instructions to reproduce the environment follow:</p>
 <section id="python">
-<h3>Python<a class="headerlink" href="#python" title="Permalink to this headline">#</a></h3>
+<h3>Python<a class="headerlink" href="#python" title="Permalink to this heading">#</a></h3>
 <p>To ensure reproducibility of the Python environment, we use <code class="docutils literal notranslate"><span class="pre">poetry</span></code>, so the dependencies of the project are defined in the <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> file. Go to the <code class="docutils literal notranslate"><span class="pre">poetry</span></code> <a class="reference external" href="https://python-poetry.org/docs/">docs</a> to find out how to install it in your machine in case it’s not there already.</p>
 <p>Then, clone this repo, go to the root folder, and run <code class="docutils literal notranslate"><span class="pre">poetry</span> <span class="pre">install</span></code>.</p>
 </section>
 <section id="r">
-<h3>R<a class="headerlink" href="#r" title="Permalink to this headline">#</a></h3>
+<h3>R<a class="headerlink" href="#r" title="Permalink to this heading">#</a></h3>
 <p>The R code used in the analyses was executed using R version 4.1.2, and the list of dependencies is the following, so make sure to have them installed in your environment:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ggplot2</span>
 <span class="n">dplyr</span>
@@ -524,40 +434,40 @@ the step-by-step code used to generate the analyses and figures shown in the man
 </div>
 </section>
 <section id="hysplit">
-<h3>HYSPLIT<a class="headerlink" href="#hysplit" title="Permalink to this headline">#</a></h3>
+<h3>HYSPLIT<a class="headerlink" href="#hysplit" title="Permalink to this heading">#</a></h3>
 <p>To estimate the backtrajectories of air sources, in this study we use <a class="reference external" href="https://www.ready.noaa.gov/HYSPLIT.php">HYSPLIT 5.2</a>. You will need a local installation of the last version of HYSPLIT in order to be able to run the model yourself. Check the documentation on the provided link to be able to perform the installation on your local machine, as it changes depending on your OS.</p>
 <section id="meteorology-data">
-<h4>Meteorology data<a class="headerlink" href="#meteorology-data" title="Permalink to this headline">#</a></h4>
+<h4>Meteorology data<a class="headerlink" href="#meteorology-data" title="Permalink to this heading">#</a></h4>
 <p>You will also need to download the associated gridded meteorology data in order to be able tu run HYSPLIT. In this case, the data used is GDAS 1x1 data, from 2011 to 2016. This is not included in the repository as it contains several GB of information. This data is available for download via the NOAA’s archives FTP, accessible through this link: <a class="reference external" href="https://www.ready.noaa.gov/archives.php">https://www.ready.noaa.gov/archives.php</a>.</p>
 </section>
 </section>
 </section>
 <section id="code">
-<h2>Code<a class="headerlink" href="#code" title="Permalink to this headline">#</a></h2>
+<h2>Code<a class="headerlink" href="#code" title="Permalink to this heading">#</a></h2>
 <p>We have shared three different notebooks to disclose how different parts of the analyses in the manuscript are made:</p>
 <section id="hysplit-trajectories">
-<h3>1. HYSPLIT trajectories<a class="headerlink" href="#hysplit-trajectories" title="Permalink to this headline">#</a></h3>
+<h3>1. HYSPLIT trajectories<a class="headerlink" href="#hysplit-trajectories" title="Permalink to this heading">#</a></h3>
 <p>This notebook can be accessed <a class="reference external" href="https://alfontal.github.io/kd-metals-swc/hysplit_trajectories.html"><strong>here</strong></a>.</p>
 <p>Here you can check how the backtrajectories shown in <strong>Figure 3</strong> and <strong>Supplementary Figure 2</strong> traced with HYSPLIT are generated.</p>
 <p><img alt="Figure 3" src="_images/readme_img.png"/></p>
 <figcaption align="center"><b>Figure 3</b> </figcaption>
 </section>
 <section id="metal-rich-aerosols-and-kd-in-kumamoto">
-<h3>2. Metal-rich aerosols and KD in Kumamoto<a class="headerlink" href="#metal-rich-aerosols-and-kd-in-kumamoto" title="Permalink to this headline">#</a></h3>
+<h3>2. Metal-rich aerosols and KD in Kumamoto<a class="headerlink" href="#metal-rich-aerosols-and-kd-in-kumamoto" title="Permalink to this heading">#</a></h3>
 <p>This notebook can be accessed <a class="reference external" href="https://alfontal.github.io/kd-metals-swc/metals.html"><strong>here</strong></a>.</p>
 <p>Here, you can check the analysis that relates the presence of metal-rich aeorosols and KD in Kumamoto.</p>
 <p><img alt="Figure 2" src="https://lh4.googleusercontent.com/rrK3X9p74-_XWkcNn5ezxhPzX4iEq-mwUg9ffnOkwXFtILoFhfbiy8JgshXTkLq4Vka-wlUtkjcJX6OUEzlHZZxcihSX67wpgUqTat7bOBodjEtLW80DNeLS0l5M1jYHECetxjlC88LyyuxELJmXWA"/></p>
 <figcaption align="center"><b>Figure 2</b> </figcaption>
 </section>
 <section id="kawasaki-disease-s-sub-weekly-cycle-figures">
-<h3>3. Kawasaki Disease’s sub-weekly cycle figures.<a class="headerlink" href="#kawasaki-disease-s-sub-weekly-cycle-figures" title="Permalink to this headline">#</a></h3>
+<h3>3. Kawasaki Disease’s sub-weekly cycle figures.<a class="headerlink" href="#kawasaki-disease-s-sub-weekly-cycle-figures" title="Permalink to this heading">#</a></h3>
 <p>This notebook can be accessed <a class="reference external" href="https://alfontal.github.io/kd-metals-swc/weekly-cycle-figures-ang.html"><strong>here</strong></a>.</p>
 <p>Analysis and figures related to the LIDAR profiles and subweekly cycle of Kawasaki Disease.</p>
 <p><img alt="Figure 6" src="https://lh6.googleusercontent.com/4I6hHKc77OJ34k-HXiCk8ocebNBisUABex3wFUSVo6mwFmqd3StxR_X4A-B1v1v1n7Rp-6M4gbVwF8ypIhqgp66OjF6r4Yon6ea1nfLHej9ujAkMX3bRn-YeBdsUKxECNVfQkDsquL5Hr_G6uQ"/></p>
 <figcaption align="center"><b>Figure 6</b> </figcaption>
 </section>
 <section id="weekly-cycle-for-kd-vs-other-diseases">
-<h3>4. Weekly cycle for KD vs other diseases.<a class="headerlink" href="#weekly-cycle-for-kd-vs-other-diseases" title="Permalink to this headline">#</a></h3>
+<h3>4. Weekly cycle for KD vs other diseases.<a class="headerlink" href="#weekly-cycle-for-kd-vs-other-diseases" title="Permalink to this heading">#</a></h3>
 <p>This notebook can be accessed <a class="reference external" href="https://alfontal.github.io/kd-metals-swc/other_diseases_weekly.html"><strong>here</strong></a>.</p>
 <p>Analysis and figures related to the computation of the weekly cycle of Heat Strokes and Influenza A in Japanese areas compared to the equivalent cycles for Kawasaki Disease.</p>
 <p><img alt="Figure R" src="https://lh5.googleusercontent.com/QEy35yV1MDKer56UGSSXMc2ToOQiqiRzqQwsfuX6TrUKNPvWgOwzu-82cmAd8MjTk0k5pKHDx06bXwbjUeTJCvE2UGwLBICIVAvJa0yQFdsx-66oGtO1r9lK7gN9jW9TLeoH3tHnD4bWUtCG3vfD7WNuwn3d2ZnzWS7vET9RSLqmMduqunzoL2kaeA"/></p>
@@ -579,7 +489,7 @@ the step-by-step code used to generate the analyses and figures shown in the man
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
@@ -587,43 +497,109 @@ the step-by-step code used to generate the analyses and figures shown in the man
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
-    <a class="right-next" href="hysplit_trajectories.html" id="next-link" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next" href="hysplit_trajectories.html" title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Modelling the air sources with HYSPLIT</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
-</div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By Alejandro Fontal, Albert Navarro, Xavier Rodó<br/>
-  
-      © Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
-    
-</div>
-
-
       </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproducibility">Reproducibility</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python">Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#r">R</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hysplit">HYSPLIT</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#meteorology-data">Meteorology data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code">Code</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hysplit-trajectories">1. HYSPLIT trajectories</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metal-rich-aerosols-and-kd-in-kumamoto">2. Metal-rich aerosols and KD in Kumamoto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kawasaki-disease-s-sub-weekly-cycle-figures">3. Kawasaki Disease’s sub-weekly cycle figures.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#weekly-cycle-for-kd-vs-other-diseases">4. Weekly cycle for KD vs other diseases.</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Alejandro Fontal, Albert Navarro, Xavier Rodó
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   
 </body></html>

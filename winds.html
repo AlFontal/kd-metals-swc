@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.18.1: http://docutils.sourceforge.net/" name="generator"/>
+
+    <title>Computation of North Westerly winds — KD and metal rich aerosols</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet"/>
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet"/>
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet"/>
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet"/>
+  <link as="font" crossorigin="" href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" rel="preload" type="font/woff2"/>
+
+    <link href="_static/pygments.css" rel="stylesheet" type="text/css"/>
+    <link href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" rel="stylesheet" type="text/css"/>
+    <link href="_static/togglebutton.css" rel="stylesheet" type="text/css"/>
+    <link href="_static/copybutton.css" rel="stylesheet" type="text/css"/>
+    <link href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" rel="stylesheet" type="text/css"/>
+    <link href="_static/sphinx-thebe.css" rel="stylesheet" type="text/css"/>
+    <link href="_static/custom.css" rel="stylesheet" type="text/css"/>
+    <link href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" rel="stylesheet" type="text/css"/>
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" rel="preload"/>
+<link as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" rel="preload"/>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script kind="utterances">
+
+    var commentsRunWhenDOMLoaded = cb => {
+    if (document.readyState != 'loading') {
+        cb()
+    } else if (document.addEventListener) {
+        document.addEventListener('DOMContentLoaded', cb)
+    } else {
+        document.attachEvent('onreadystatechange', function() {
+        if (document.readyState == 'complete') cb()
+        })
+    }
+}
+
+var addUtterances = () => {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "https://utteranc.es/client.js";
+    script.async = "async";
+
+    script.setAttribute("repo", "https://github.com/AlFontal/kd-metals-swc");
+    script.setAttribute("issue-term", "pathname");
+    script.setAttribute("theme", "github-light");
+    script.setAttribute("label", "💬 comment");
+    script.setAttribute("crossorigin", "anonymous");
+
+    sections = document.querySelectorAll("div.section");
+    if (sections !== null) {
+        section = sections[sections.length-1];
+        section.appendChild(script);
+    }
+}
+commentsRunWhenDOMLoaded(addUtterances);
+</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-DC18W62KP8"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-DC18W62KP8');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'winds';</script>
+    <link href="https://alfontal.github.io/kd-metals-swc/winds.html" rel="canonical"/>
+    <link href="_static/favicon.ico" rel="shortcut icon"/>
+    <link href="genindex.html" rel="index" title="Index"/>
+    <link href="search.html" rel="search" title="Search"/>
+    <link href="weekly-cycle-figures-ang.html" rel="prev" title="Sub-weekly cycle Figures"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <meta content="en" name="docsearch:language"/>
+  </head>
+  
+  
+  <body data-bs-root-margin="0px 0px -60%" data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-default-mode="" data-offset="180">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input class="sidebar-toggle" id="__primary" name="__primary" type="checkbox"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input class="sidebar-toggle" id="__secondary" name="__secondary" type="checkbox"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form action="search.html" class="bd-search d-flex align-items-center" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input aria-label="Search this book..." autocapitalize="off" autocomplete="off" autocorrect="off" class="form-control" id="search-input" name="q" placeholder="Search this book..." spellcheck="false" type="search"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="README.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img alt="Logo image" class="logo__image only-light" src="_static/logo.png"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav aria-label="Main" class="bd-links" id="bd-docs-nav">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="README.html">
+                    README
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Notebooks</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="hysplit_trajectories.html">HYSPLIT backtrajectories</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metals.html">Chemistry and KD synchrony</a></li>
+<li class="toctree-l1"><a class="reference internal" href="weekly-cycle-figures-ang.html">Sub-weekly Cycle Figures</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">North-Westerly Winds computation</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main class="bd-main" id="main-content">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" data-bs-placement="bottom" data-bs-toggle="tooltip" for="__primary" title="Toggle primary sidebar">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button aria-expanded="false" aria-label="Source repositories" class="btn dropdown-toggle" data-bs-toggle="dropdown" type="button">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a class="btn btn-sm btn-source-repository-button dropdown-item" data-bs-placement="left" data-bs-toggle="tooltip" href="https://github.com/AlFontal/kd-metals-swc" target="_blank" title="Source repository">
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a class="btn btn-sm btn-source-issues-button dropdown-item" data-bs-placement="left" data-bs-toggle="tooltip" href="https://github.com/AlFontal/kd-metals-swc/issues/new?title=Issue%20on%20page%20%2Fwinds.html&amp;body=Your%20issue%20content%20here." target="_blank" title="Open an issue">
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button aria-expanded="false" aria-label="Download this page" class="btn dropdown-toggle" data-bs-toggle="dropdown" type="button">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a class="btn btn-sm btn-download-source-button dropdown-item" data-bs-placement="left" data-bs-toggle="tooltip" href="_sources/winds.ipynb" target="_blank" title="Download source file">
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button class="btn btn-sm btn-download-pdf-button dropdown-item" data-bs-placement="left" data-bs-toggle="tooltip" onclick="window.print()" title="Print to PDF">
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button class="btn btn-sm btn-fullscreen-button" data-bs-placement="bottom" data-bs-toggle="tooltip" onclick="toggleFullScreen()" title="Fullscreen mode">
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" data-bs-placement="bottom" data-bs-toggle="tooltip" for="__secondary" title="Toggle secondary sidebar">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div class="onlyprint" id="jb-print-docs-body">
+    <h1>Computation of North Westerly winds</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preamble">Preamble</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">Imports</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-sets">Pre-sets</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#main-code">Main code</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="computation-of-north-westerly-winds">
+<h1>Computation of North Westerly winds<a class="headerlink" href="#computation-of-north-westerly-winds" title="Permalink to this heading">#</a></h1>
+<section id="preamble">
+<h2>Preamble<a class="headerlink" href="#preamble" title="Permalink to this heading">#</a></h2>
+<section id="imports">
+<h3>Imports<a class="headerlink" href="#imports" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cdsapi</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">plotnine</span> <span class="k">as</span> <span class="nn">p9</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">from</span> <span class="nn">matplotlib_inline.backend_inline</span> <span class="kn">import</span> <span class="n">set_matplotlib_formats</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="pre-sets">
+<h3>Pre-sets<a class="headerlink" href="#pre-sets" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Matplotlib settings</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">'font.family'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'Georgia'</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">'svg.fonttype'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'none'</span>
+<span class="n">set_matplotlib_f</span> <span class="n">ormats</span><span class="p">(</span><span class="s1">'retina'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">'figure.dpi'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">300</span>
+<span class="c1"># Plotnine settings (for figures)</span>
+
+<span class="n">p9</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">'base_family'</span><span class="p">,</span> <span class="s1">'Georgia'</span><span class="p">)</span>
+
+<span class="n">p9</span><span class="o">.</span><span class="n">theme_set</span><span class="p">(</span>
+    <span class="n">p9</span><span class="o">.</span><span class="n">theme_bw</span><span class="p">()</span>
+    <span class="o">+</span> <span class="n">p9</span><span class="o">.</span><span class="n">theme</span><span class="p">(</span><span class="n">panel_grid</span><span class="o">=</span><span class="n">p9</span><span class="o">.</span><span class="n">element_blank</span><span class="p">(),</span>
+               <span class="n">legend_background</span><span class="o">=</span><span class="n">p9</span><span class="o">.</span><span class="n">element_blank</span><span class="p">(),</span>
+               <span class="n">panel_grid_major</span><span class="o">=</span><span class="n">p9</span><span class="o">.</span><span class="n">element_line</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mf">.5</span><span class="p">,</span> <span class="n">linetype</span><span class="o">=</span><span class="s1">'dashed'</span><span class="p">,</span>
+                                                <span class="n">alpha</span><span class="o">=</span><span class="mf">.15</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'black'</span><span class="p">),</span>
+               <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;plotnine.themes.theme_bw.theme_bw at 0x288966710&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="main-code">
+<h2>Main code<a class="headerlink" href="#main-code" title="Permalink to this heading">#</a></h2>
+<p>This code excerpt was generated to respond reviewer #2 during the revision of this
+manuscript on Environmental Research Letters. The reviewer asked us to provide
+information on the historical wind patterns in the region of interest.</p>
+<p>We downloaded the ERA5 reanalysis data for winds in Tokyo and Kumamoto, two of the relevant
+regions in the manuscript. We downloaded monthly wind direction and speed for those
+locations and then computed the north-westerly component of the wind.</p>
+<p>We define a couple of functions to download the data from the Copernicus Climate Data Store and compute
+the north-westerly component of the wind.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">download_wind_data</span><span class="p">(</span><span class="n">city</span><span class="p">,</span> <span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+
+    <span class="n">years</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)</span> <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1996</span><span class="p">,</span> <span class="mi">2020</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
+
+    <span class="n">c</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span>
+        <span class="s2">"reanalysis-era5-single-levels-monthly-means"</span><span class="p">,</span>
+        <span class="p">{</span>
+            <span class="s2">"product_type"</span><span class="p">:</span> <span class="s2">"monthly_averaged_reanalysis"</span><span class="p">,</span>
+            <span class="s2">"variable"</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">"10m_u_component_of_wind"</span><span class="p">,</span>
+                <span class="s2">"10m_v_component_of_wind"</span><span class="p">,</span>
+            <span class="p">],</span>
+            <span class="s2">"year"</span><span class="p">:</span> <span class="n">years</span><span class="p">,</span>
+            <span class="s2">"month"</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">"01"</span><span class="p">,</span> <span class="s2">"02"</span><span class="p">,</span> <span class="s2">"03"</span><span class="p">,</span> <span class="s2">"04"</span><span class="p">,</span> <span class="s2">"05"</span><span class="p">,</span> <span class="s2">"06"</span><span class="p">,</span>
+                <span class="s2">"07"</span><span class="p">,</span> <span class="s2">"08"</span><span class="p">,</span> <span class="s2">"09"</span><span class="p">,</span> <span class="s2">"10"</span><span class="p">,</span> <span class="s2">"11"</span><span class="p">,</span> <span class="s2">"12"</span>
+            <span class="p">],</span>
+            <span class="s2">"time"</span><span class="p">:</span> <span class="s2">"00:00"</span><span class="p">,</span>
+            <span class="s2">"grid"</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">],</span>
+            <span class="s2">"area"</span><span class="p">:</span> <span class="p">[</span><span class="n">lat</span> <span class="o">-</span> <span class="mf">.01</span> <span class="p">,</span> <span class="n">lon</span> <span class="o">-</span> <span class="mf">.01</span><span class="p">,</span> <span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">],</span>
+            <span class="s2">"format"</span><span class="p">:</span> <span class="s2">"netcdf"</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="n">filename</span>
+    <span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">add_nw_wind</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">angle_rad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+    <span class="n">cos_angle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle_rad</span><span class="p">)</span>
+    <span class="n">sin_angle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle_rad</span><span class="p">)</span>
+
+    <span class="n">nw_wind</span> <span class="o">=</span> <span class="n">cos_angle</span> <span class="o">*</span> <span class="n">data</span><span class="p">[</span><span class="s1">'u10'</span><span class="p">]</span> <span class="o">-</span> <span class="n">sin_angle</span> <span class="o">*</span> <span class="n">data</span><span class="p">[</span><span class="s1">'v10'</span><span class="p">]</span>
+    <span class="n">data_copy</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">data_copy</span><span class="p">[</span><span class="s1">'nw_wind'</span><span class="p">]</span> <span class="o">=</span> <span class="n">nw_wind</span>
+    <span class="k">return</span> <span class="n">data_copy</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We then use those functions to download the data and compute the north-westerly component of the wind
+for each location for the period 1996 to 2020:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download data</span>
+<span class="n">kumamoto_lat</span><span class="p">,</span> <span class="n">kumamoto_lon</span> <span class="o">=</span> <span class="mf">32.79</span><span class="p">,</span> <span class="mf">130.74</span>
+<span class="n">download_wind_data</span><span class="p">(</span><span class="s2">"Kumamoto"</span><span class="p">,</span> <span class="n">kumamoto_lat</span><span class="p">,</span> <span class="n">kumamoto_lon</span><span class="p">,</span> <span class="s2">"kumamoto_wind_data.nc"</span><span class="p">)</span>
+
+<span class="n">tokyo_lat</span><span class="p">,</span> <span class="n">tokyo_lon</span> <span class="o">=</span> <span class="mf">35.68</span><span class="p">,</span> <span class="mf">139.76</span>
+<span class="n">download_wind_data</span><span class="p">(</span><span class="s2">"Tokyo"</span><span class="p">,</span> <span class="n">tokyo_lat</span><span class="p">,</span> <span class="n">tokyo_lon</span><span class="p">,</span> <span class="s2">"tokyo_wind_data.nc"</span><span class="p">)</span>
+
+<span class="c1"># Load data and add NW-wind variable</span>
+<span class="n">kumamoto_data</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="s2">"kumamoto_wind_data.nc"</span><span class="p">)</span>
+<span class="n">kumamoto_data</span> <span class="o">=</span> <span class="n">add_nw_wind</span><span class="p">(</span><span class="n">kumamoto_data</span><span class="p">)</span>
+
+<span class="n">tokyo_data</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="s2">"tokyo_wind_data.nc"</span><span class="p">)</span>
+<span class="n">tokyo_data</span> <span class="o">=</span> <span class="n">add_nw_wind</span><span class="p">(</span><span class="n">tokyo_data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And plot the results:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">tokyo_data</span>
+    <span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'time'</span><span class="p">)</span>
+    <span class="p">[</span><span class="s1">'nw_wind'</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="s1">'Tokyo'</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">kumamoto_data</span>
+    <span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'time'</span><span class="p">)</span>
+    <span class="p">[</span><span class="s1">'nw_wind'</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="s1">'Kumamoto'</span><span class="p">))])</span>
+    <span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">'time &lt; "2017"'</span><span class="p">)</span>
+ <span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="k">lambda</span> <span class="n">dd</span><span class="p">:</span> <span class="n">p9</span><span class="o">.</span><span class="n">ggplot</span><span class="p">(</span><span class="n">dd</span><span class="p">)</span>
+     <span class="o">+</span> <span class="n">p9</span><span class="o">.</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">'time'</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">'nw_wind'</span><span class="p">)</span>
+     <span class="o">+</span> <span class="n">p9</span><span class="o">.</span><span class="n">geom_line</span><span class="p">()</span>
+     <span class="o">+</span> <span class="n">p9</span><span class="o">.</span><span class="n">facet_wrap</span><span class="p">(</span><span class="s1">'~location'</span><span class="p">,</span> <span class="n">ncol</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+     <span class="o">+</span> <span class="n">p9</span><span class="o">.</span><span class="n">theme</span><span class="p">(</span><span class="n">figure_size</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+     <span class="o">+</span> <span class="n">p9</span><span class="o">.</span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">''</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">'NW-wind (m/s)'</span><span class="p">)</span>
+ <span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/2fe4b6dbe3aafd8198943dd97f4939099a27fb1d68f4acc10eee5d24794b1b10.png" src="_images/2fe4b6dbe3aafd8198943dd97f4939099a27fb1d68f4acc10eee5d24794b1b10.png"/>
+
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev" href="weekly-cycle-figures-ang.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Sub-weekly cycle Figures</p>
+      </div>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preamble">Preamble</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">Imports</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-sets">Pre-sets</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#main-code">Main code</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Alejandro Fontal, Albert Navarro, Xavier Rodó
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  
+</body></html>
