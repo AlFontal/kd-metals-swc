@@ -1,4 +1,5 @@
 data/kd_ts.csv
 data/kd_daily.xlsx
 data/control_diseases/*
-output/weather/raw/*
+output/weather
+output/trajectories
