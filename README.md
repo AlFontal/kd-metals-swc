@@ -1,4 +1,4 @@
-# Fine metal-rich aerosols from intensive farming and urban pollution promote Kawasaki disease outbreaks
+# Sub-weekly signatures relate ultrafine aerosols enriched in metals from intensive farming and urban pollution to Kawasaki disease
 
 [![GH-pages](https://img.shields.io/badge/Code--Pages-Click--to--access-red)](https://alfontal.github.io/kd-metals-swc)
 ![license](https://img.shields.io/badge/license-BSD--3--Clause-green)
@@ -7,17 +7,9 @@
 
 
 This repository contains the materials and code necessary to reproduce the analysis on the manuscript 
-_Fine metal-rich aerosols from intensive farming and urban pollution promote Kawasaki disease outbreaks_.
+_Sub-weekly signatures relate ultrafine aerosols enriched in metals from intensive farming and urban pollution to Kawasaki disease_.
 
 **To check the code notebooks, please follow [this link](https://alfontal.github.io/kd-metals-swc)**.
-
-
-Since the manuscript is in the pre-publication step, we are keeping the source code on a private repository
-in GitHub. To aid in the review process and provide maximum transparency and ensure the reproducibility of the 
-experiments, we are sharing the repository (which can be cloned and then executed) with 
-the step-by-step code used to generate the analyses and figures shown in the manuscript (and possibly some more).
-
-To ensure the anonimity during the peer-review process, we are using [Gitfront](https://gitfront.io/) to expose a read-only version of the repository which can only be accessed through the shared link. Since most of the code is based on Jupyter Notebooks executing Python and R code, and Gitfront doesn't render them in a nice manner, the Github Pages site (rendered thanks to the [Jupyterbook](https://jupyterbook.org/) and [Sphinx](https://www.sphinx-doc.org/) projects) of the repo can be accessed through the [GitHub Pages Site](alfontal.github.io/kd-metals-swc) with a nice render of the notebooks.
 
 
 ## Reproducibility
@@ -103,12 +95,11 @@ Analysis and figures related to the LIDAR profiles and subweekly cycle of Kawasa
 ![Figure 6](https://lh6.googleusercontent.com/4I6hHKc77OJ34k-HXiCk8ocebNBisUABex3wFUSVo6mwFmqd3StxR_X4A-B1v1v1n7Rp-6M4gbVwF8ypIhqgp66OjF6r4Yon6ea1nfLHej9ujAkMX3bRn-YeBdsUKxECNVfQkDsquL5Hr_G6uQ)
 <figcaption align = "center"><b>Figure 6</b> </figcaption>
 
-### 4. Weekly cycle for KD vs other diseases.
+### 4. Historical computation of northwesterly winds.
 
-This notebook can be accessed [**here**](https://alfontal.github.io/kd-metals-swc/other_diseases_weekly.html).
+This notebook can be accessed [**here**](https://alfontal.github.io/kd-metals-swc/winds.html).
 
-Analysis and figures related to the computation of the weekly cycle of Heat Strokes and Influenza A in Japanese areas compared to the equivalent cycles for Kawasaki Disease.
+As part of the peer-review process, the historical North-westerly winds arriving to different locations in Japan were computed.
 
-![Figure R](https://lh5.googleusercontent.com/QEy35yV1MDKer56UGSSXMc2ToOQiqiRzqQwsfuX6TrUKNPvWgOwzu-82cmAd8MjTk0k5pKHDx06bXwbjUeTJCvE2UGwLBICIVAvJa0yQFdsx-66oGtO1r9lK7gN9jW9TLeoH3tHnD4bWUtCG3vfD7WNuwn3d2ZnzWS7vET9RSLqmMduqunzoL2kaeA)
 
 

@@ -1,5 +1,7 @@
 data/kd_ts.csv
 data/kd_daily.xlsx
 data/control_diseases/*
+data/KD_chemistry_2011.xlsx
 output/weather
 output/trajectories
+.DS_Store*
