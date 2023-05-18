@@ -4,12 +4,21 @@
 ![license](https://img.shields.io/badge/license-BSD--3--Clause-green)
 ![python](https://img.shields.io/badge/python-v3.8-orange?logo=Python&logoColor=white)
 ![R](https://img.shields.io/badge/R-v4.1.2-blue?logo=R)
+[![DOI](https://zenodo.org/badge/498811401.svg)](https://zenodo.org/badge/latestdoi/498811401)
+
+
 
 
 This repository contains the materials and code necessary to reproduce the analysis on the manuscript 
 _Sub-weekly signatures relate ultrafine aerosols enriched in metals from intensive farming and urban pollution to Kawasaki disease_.
 
 **To check the code notebooks, please follow [this link](https://alfontal.github.io/kd-metals-swc)**.
+
+The public data (which relates to LIDAR, meteorology and chemical characterization of the air) can
+be found in the `data` folder of this repo.
+
+Data pertaining to the Kawasaki Disease cases is not publicly available as it contains sensitive information, but can be made available for research through resaonable request to the data
+owner, Prof. Nakamura (nakamuyk@jichi.ac.jp).
 
 
 ## Reproducibility
